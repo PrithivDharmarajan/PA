@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/connect_belt_parent_lay"
+    style="@style/LayoutMatch" >
+
+    <RelativeLayout
+        android:id="@+id/header_lay"
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:background="@color/blue">
+
+        <include layout="@layout/ui_general_header_with_start_end_btn_view" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/header_lay"
+        style="@style/LayoutMatch">
+
+        <ScrollView
+            style="@style/LayoutWidMatch_HeiWrap"
+            android:layout_centerVertical="true">
+
+            <LinearLayout
+                style="@style/LayoutWidMatch_HeiWrap"
+                android:orientation="vertical">
+
+                <ImageView
+                    style="@style/LayoutWidMatch_HeiWrap"
+                    android:layout_width="@dimen/size150"
+                    android:layout_height="@dimen/size150"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:tint="@color/highlight_blue"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/active_protective_loading" />
+
+                <TextView
+                    style="@style/TextOpenSansSemiBold"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="@dimen/size65"
+                    android:padding="@dimen/size15"
+                    android:textColor="@color/blue"
+                    android:text="@string/connect_to_belt_dot"
+                    android:textSize="@dimen/text18" />
+
+
+                <Button
+                    android:id="@+id/cancel_btn"
+                    style="@style/ButtonOpenSansSemiBold"
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/blue_btn"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/size30"
+                    android:paddingStart="@dimen/size30"
+                    android:paddingEnd="@dimen/size30"
+                    android:text="@string/cancel"
+                    tools:targetApi="lollipop" />
+            </LinearLayout>
+
+        </ScrollView>
+    </RelativeLayout>
+</RelativeLayout>

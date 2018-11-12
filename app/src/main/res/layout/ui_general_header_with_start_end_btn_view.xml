@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/blue"
+    style="@style/LayoutWidMatch_HeiWrap">
+
+    <RelativeLayout
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:layout_height="@dimen/size45">
+
+        <TextView
+            android:id="@+id/header_txt"
+            style="@style/TextOpenSansSemiBold"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/header_end_img_lay"
+            android:layout_toEndOf="@+id/header_start_img_lay"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text17" />
+
+
+        <RelativeLayout
+            android:id="@+id/header_start_img_lay"
+            android:layout_width="@dimen/size45"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/header_start_img"
+                android:layout_width="@dimen/size20"
+                android:layout_height="@dimen/size20"
+                android:layout_centerInParent="true"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/back" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/header_end_img_lay"
+            android:layout_width="@dimen/size45"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:visibility="invisible">
+
+            <ImageView
+                android:id="@+id/header_end_img"
+                android:layout_width="@dimen/size20"
+                android:layout_height="@dimen/size20"
+                android:layout_centerInParent="true"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

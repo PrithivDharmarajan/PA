@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_login_parent_lay"
+    style="@style/LayoutMatch"
+    android:background="@drawable/app_bg">
+
+
+    <ScrollView
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:layout_centerVertical="true">
+
+        <LinearLayout
+            android:id="@+id/active_protective_lay"
+            style="@style/LayoutWidMatch_HeiWrap"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/LayoutWidMatch_HeiWrap"
+                android:layout_height="@dimen/size50"
+                android:layout_marginEnd="@dimen/size60"
+                android:layout_marginStart="@dimen/size60"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/active_protective" />
+
+            <TextView
+                style="@style/TextOpenSansRegular"
+                android:text="@string/email_user_id"
+                android:layout_marginTop="@dimen/size30"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="@dimen/size30"
+                android:textSize="@dimen/text12" />
+
+            <EditText
+                android:id="@+id/email_user_id_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size3"
+                android:hint="@string/enter_email_user_id"
+                android:layout_marginEnd="@dimen/size30"
+                android:layout_marginStart="@dimen/size30"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:inputType="text|textEmailAddress"
+                android:maxLines="1"
+                tools:ignore="Autofill" />
+            <TextView
+                style="@style/TextOpenSansRegular"
+                android:text="@string/password"
+                android:layout_marginTop="@dimen/size10"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="@dimen/size30"
+                android:textSize="@dimen/text12" />
+
+
+            <EditText
+                android:id="@+id/password_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:hint="@string/enter_password"
+                android:inputType="textPassword"
+                android:layout_marginEnd="@dimen/size30"
+                android:layout_marginStart="@dimen/size30"
+                android:layout_marginTop="@dimen/size3"
+                android:imeActionId="100"
+                android:imeActionLabel="@string/submit"
+                android:maxLines="1"
+                android:imeOptions="actionDone|flagNoExtractUi"
+                tools:ignore="Autofill" />
+            <Button
+                android:id="@+id/submit_btn"
+                style="@style/ButtonOpenSansSemiBold"
+                android:layout_marginBottom="@dimen/size10"
+                android:layout_marginEnd="@dimen/size30"
+                android:layout_marginStart="@dimen/size30"
+                android:layout_marginTop="@dimen/size50"
+                android:text="@string/submit"
+                tools:targetApi="lollipop" />
+
+            <TextView
+                android:id="@+id/user_login_txt"
+                style="@style/TextOpenSansRegular"
+                android:padding="@dimen/size10"
+                android:text="@string/user_login"
+                android:textSize="@dimen/text12" />
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>

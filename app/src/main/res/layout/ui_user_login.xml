@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_login_parent_lay"
+    style="@style/LayoutMatch"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+
+    <TextView
+        android:id="@+id/admin_login_txt"
+        style="@style/TextOpenSansRegular"
+        android:text="@string/admin_login"
+        android:textColor="@color/light_blue"
+        android:layout_height="0dip"
+        android:layout_weight="0.08"
+        android:gravity="end"
+        android:layout_margin="@dimen/size10"
+        android:layout_width="wrap_content"
+        android:layout_gravity="end"
+        android:textSize="@dimen/text12" />
+
+
+
+    <LinearLayout style="@style/LayoutWidMatch_HeiWei"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/size50"
+        android:orientation="vertical">
+        <ImageView
+            style="@style/LayoutWidMatch_HeiWrap"
+            android:src="@color/light_blue"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="@dimen/size40"
+            android:layout_gravity="start"
+            android:contentDescription="@string/app_name"
+            android:layout_marginStart="@dimen/size40"
+            android:layout_marginEnd="@dimen/size40"
+            android:layout_height="@dimen/size30"/>
+
+        <Button
+            android:id="@+id/scan_to_pair_btn"
+            style="@style/ButtonOpenSansSemiBold"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/size35"
+            android:minWidth="@dimen/size130"
+            android:padding="@dimen/size7"
+            android:text="@string/scan_to_pair"
+            android:textColor="@color/white"
+            tools:targetApi="lollipop" />
+
+    </LinearLayout>
+    <View
+        style="@style/LayoutWidMatch_HeiWei"
+        android:layout_weight="0.08"/>
+
+
+
+</LinearLayout>

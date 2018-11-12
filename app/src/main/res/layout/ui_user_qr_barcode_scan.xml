@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scan_qr_bar_code_lay"
+    style="@style/LayoutMatch">
+
+    <RelativeLayout
+        android:id="@+id/header_lay"
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:background="@color/blue">
+
+        <include layout="@layout/ui_general_header_with_start_end_txt_view" />
+    </RelativeLayout>
+
+    <SurfaceView
+        android:id="@+id/surfaceView"
+        style="@style/LayoutMatch"
+        android:layout_below="@+id/header_lay"
+        android:layout_centerInParent="true" />
+
+    <RelativeLayout
+        style="@style/LayoutMatch"
+        android:layout_below="@+id/header_lay">
+
+        <ScrollView
+            android:id="@+id/no_belt_lay"
+            style="@style/LayoutWidMatch_HeiWrap"
+            android:layout_centerVertical="true">
+
+            <RelativeLayout style="@style/LayoutWidMatch_HeiWrap">
+
+
+                <ImageView
+                    android:id="@+id/qr_img"
+                    style="@style/LayoutWidMatch_HeiWrap"
+                    android:layout_height="@dimen/size180"
+                    android:layout_centerInParent="true"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/qr_big" />
+
+                <Button
+                    android:id="@+id/add_manually_btn"
+                    style="@style/ButtonOpenSansSemiBold"
+                    android:layout_width="@dimen/size180"
+                    android:layout_below="@+id/qr_img"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/size100"
+                    android:layout_marginBottom="@dimen/size10"
+                    android:background="@drawable/blue_btn"
+                    android:text="@string/add_manually"
+                    android:textColor="@color/white"
+                    tools:targetApi="lollipop" />
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/all_user_parent_lay"
+    style="@style/LayoutMatch"
+    android:background="@drawable/app_bg">
+
+    <RelativeLayout
+        android:id="@+id/header_lay"
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:background="@color/blue">
+
+        <include layout="@layout/ui_general_header_with_start_end_btn_view" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/assign_user_list_recycler_view"
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:layout_above="@id/add_user_btn"
+        android:paddingStart="@dimen/size20"
+        android:paddingEnd="@dimen/size20"
+        android:layout_below="@+id/header_lay" />
+
+    <Button
+        android:id="@+id/add_user_btn"
+        style="@style/ButtonOpenSansSemiBold"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/size20"
+        android:layout_marginBottom="@dimen/size20"
+        android:paddingStart="@dimen/size30"
+        android:paddingEnd="@dimen/size30"
+        android:text="@string/add_user"
+        tools:targetApi="lollipop" />
+
+</RelativeLayout>

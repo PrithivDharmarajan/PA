@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_belt_parent_lay"
+    style="@style/LayoutMatch">
+
+    <RelativeLayout
+        android:id="@+id/header_lay"
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:background="@color/blue">
+
+        <include layout="@layout/ui_general_header_with_start_end_txt_view" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        style="@style/LayoutMatch"
+        android:layout_below="@+id/header_lay">
+
+        <LinearLayout
+            style="@style/LayoutWidMatch_HeiWrap"
+            android:orientation="vertical"
+            android:padding="@dimen/size20">
+
+        <LinearLayout
+            style="@style/LayoutWidMatch_HeiWrap" >
+            <TextView
+                style="@style/TextOpenSansRegular"
+                android:layout_width="wrap_content"
+                android:text="@string/title"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text12" />
+            <TextView
+                style="@style/TextOpenSansRegular"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="@dimen/size5"
+                android:text="@string/star_sym"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text12" />
+        </LinearLayout>
+
+            <EditText
+                android:id="@+id/title_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size5"
+                android:background="@drawable/blue_white_bg"
+                android:hint="@string/enter_title"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill,TextFields" />
+
+            <LinearLayout
+                style="@style/LayoutWidMatch_HeiWrap"
+                android:layout_marginTop="@dimen/size10">
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:text="@string/first_name"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text12" />
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="@dimen/size5"
+                    android:text="@string/star_sym"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text12" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/first_name_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size5"
+                android:background="@drawable/blue_white_bg"
+                android:hint="@string/enter_first_name"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill" />
+
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:text="@string/middle_name"
+                    android:layout_marginTop="@dimen/size10"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text12" />
+
+
+
+            <EditText
+                android:id="@+id/middle_name_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size5"
+                android:background="@drawable/blue_white_bg"
+                android:hint="@string/enter_middle_name"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill" />
+
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:text="@string/last_name"
+                    android:layout_marginTop="@dimen/size10"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text12" />
+
+
+            <EditText
+                android:id="@+id/last_name_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size5"
+                android:background="@drawable/blue_white_bg"
+                android:hint="@string/enter_last_name"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill,TextFields" />
+
+
+            <LinearLayout
+                style="@style/LayoutWidMatch_HeiWrap"
+                android:layout_marginTop="@dimen/size10">
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:text="@string/address"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text12" />
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="@dimen/size5"
+                    android:text="@string/star_sym"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text12" />
+            </LinearLayout>
+            <EditText
+                android:id="@+id/address_line_one_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size5"
+                android:background="@drawable/blue_white_bg"
+                android:hint="@string/enter_address_line_one"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill,TextFields" />
+
+            <EditText
+                android:id="@+id/address_line_two_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size10"
+                android:background="@drawable/blue_white_bg"
+
+                android:hint="@string/enter_address_line_two"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill,TextFields" />
+            <LinearLayout
+                style="@style/LayoutWidMatch_HeiWrap"
+                android:layout_marginTop="@dimen/size10">
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:text="@string/zip_code"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text12" />
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="@dimen/size5"
+                    android:text="@string/star_sym"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text12" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/zip_code_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size5"
+                android:background="@drawable/blue_white_bg"
+                android:hint="@string/enter_zip_code"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:inputType="textPostalAddress"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill" />
+
+            <LinearLayout
+                style="@style/LayoutWidMatch_HeiWrap"
+                android:layout_marginTop="@dimen/size10">
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:text="@string/country_code"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text12" />
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="@dimen/size5"
+                    android:text="@string/star_sym"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text12" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/country_code_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size5"
+                android:background="@drawable/blue_white_bg"
+                android:hint="@string/enter_country_code"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill" />
+            <LinearLayout
+                style="@style/LayoutWidMatch_HeiWrap"
+                android:layout_marginTop="@dimen/size10">
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:text="@string/primary_mobile_number"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text12" />
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="@dimen/size5"
+                    android:text="@string/star_sym"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text12" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/primary_mobile_number_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size5"
+                android:background="@drawable/blue_white_bg"
+                android:hint="@string/enter_primary_mobile_number"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill" />
+
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/size10"
+                    android:text="@string/secondary_mobile_number"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text12" />
+
+            <EditText
+                android:id="@+id/secondary_mobile_number_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size5"
+                android:background="@drawable/blue_white_bg"
+                android:hint="@string/enter_secondary_mobile_number"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill" />
+
+            <LinearLayout
+                style="@style/LayoutWidMatch_HeiWrap"
+                android:layout_marginTop="@dimen/size10">
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:text="@string/primary_email"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text12" />
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="@dimen/size5"
+                    android:text="@string/star_sym"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text12" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/primary_email_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size5"
+                android:background="@drawable/blue_white_bg"
+                android:hint="@string/enter_primary_email"
+                android:imeOptions="actionDone|flagNoExtractUi"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:imeActionLabel="@string/save"
+                android:imeActionId="100"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

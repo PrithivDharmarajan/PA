@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/temp_parent_lay"
+
+    style="@style/LayoutMatch">
+
+    <RelativeLayout
+        android:id="@+id/header_lay"
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:background="@color/blue">
+
+        <include layout="@layout/ui_general_header_with_start_end_btn_view" />
+
+    </RelativeLayout>
+
+    <TextView
+        style="@style/TextOpenSansSemiBold"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header_lay"
+        android:layout_centerVertical="true"
+        android:ellipsize="end"
+        android:text="@string/misc_future_use"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text12" />
+
+</RelativeLayout>

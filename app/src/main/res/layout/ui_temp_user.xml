@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_belt_parent_lay"
+    style="@style/LayoutMatch">
+
+    <RelativeLayout
+        android:id="@+id/header_lay"
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:background="@color/blue">
+
+        <include layout="@layout/ui_general_header_with_start_end_txt_view" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        style="@style/LayoutMatch"
+        android:layout_above="@+id/save_btn"
+        android:layout_below="@+id/header_lay">
+
+        <LinearLayout
+            style="@style/LayoutWidMatch_HeiWrap"
+            android:orientation="vertical"
+            android:padding="@dimen/size20">
+
+            <TextView
+                style="@style/TextOpenSansRegular"
+                android:layout_width="wrap_content"
+                android:text="@string/serial_number"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text12" />
+
+            <EditText
+                android:id="@+id/serial_number_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size3"
+                android:background="@drawable/blue_white_bg"
+                android:hint="@string/enter_serial_number"
+                android:imeOptions="actionDone|flagNoExtractUi"
+                android:imeActionId="100"
+                android:imeActionLabel="@string/save"
+                android:inputType="text"
+                android:maxLength="25"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill,TextFields" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/save_btn"
+        style="@style/ButtonOpenSansSemiBold"
+        android:layout_marginStart="@dimen/size20"
+        android:layout_marginEnd="@dimen/size20"
+        android:background="@drawable/blue_btn"
+        android:layout_marginBottom="@dimen/size20"
+        android:layout_alignParentBottom="true"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        tools:targetApi="lollipop" />
+
+</RelativeLayout>

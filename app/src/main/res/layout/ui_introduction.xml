@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/introduction_parent_lay"
+    style="@style/LayoutMatch"
+    android:background="@drawable/app_bg">
+
+    <RelativeLayout
+        android:id="@+id/header_lay"
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:background="@color/blue">
+
+        <include layout="@layout/ui_general_header_with_start_end_btn_view" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:layout_below="@+id/header_lay"
+        android:layout_centerVertical="true">
+
+        <LinearLayout
+            style="@style/LayoutWidMatch_HeiWrap"
+            android:orientation="vertical">
+
+
+            <TextView
+                style="@style/TextOpenSansRegular"
+                android:layout_width="wrap_content"
+                android:gravity="start"
+                android:padding="@dimen/size25"
+                android:text="@string/configuration_msg"
+                android:textSize="@dimen/text18" />
+
+
+            <Button
+                android:id="@+id/configure_btn"
+                style="@style/ButtonOpenSansSemiBold"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/size30"
+                android:paddingStart="@dimen/size30"
+                android:paddingEnd="@dimen/size30"
+                android:text="@string/configure"
+                tools:targetApi="lollipop" />
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

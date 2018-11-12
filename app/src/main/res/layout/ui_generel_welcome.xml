@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/LayoutMatch"
+    android:id="@+id/welcome_parent_lay"
+    android:background="@drawable/app_bg">
+
+    <ScrollView
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:layout_centerVertical="true">
+
+        <LinearLayout
+            android:id="@+id/active_protective_lay"
+            style="@style/LayoutWidMatch_HeiWrap"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/LayoutWidMatch_HeiWrap"
+                android:layout_height="@dimen/size50"
+                android:layout_marginEnd="@dimen/size60"
+                android:layout_marginStart="@dimen/size60"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/active_protective" />
+
+            <Button
+                android:id="@+id/scan_to_pair_btn"
+                style="@style/ButtonOpenSansSemiBold"
+                android:layout_marginBottom="@dimen/size5"
+                android:layout_marginEnd="@dimen/size30"
+                android:layout_marginStart="@dimen/size30"
+                android:layout_marginTop="@dimen/size30"
+                android:text="@string/scan_to_pair"
+                tools:targetApi="lollipop" />
+
+            <Button
+                android:id="@+id/admin_login_btn"
+                style="@style/ButtonOpenSansSemiBold"
+                android:layout_marginBottom="@dimen/size20"
+                android:layout_marginEnd="@dimen/size30"
+                android:layout_marginStart="@dimen/size30"
+                android:layout_marginTop="@dimen/size5"
+                android:text="@string/admin_login"
+                tools:targetApi="lollipop" />
+
+            <TextView
+                android:id="@+id/sign_up_txt"
+                style="@style/TextOpenSansRegular"
+                android:padding="@dimen/size10"
+                android:text="@string/sign_up"
+                android:visibility="gone"
+                android:textSize="@dimen/text12" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

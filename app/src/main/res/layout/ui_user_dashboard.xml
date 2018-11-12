@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/user_dashboard_parent_lay"
+
+    style="@style/LayoutMatch">
+
+    <RelativeLayout
+        android:id="@+id/header_lay"
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:background="@color/blue">
+
+        <include layout="@layout/ui_general_header_with_start_end_txt_view" />
+
+    </RelativeLayout>
+
+    <ImageView
+        style="@style/LayoutMatch"
+        android:layout_above="@+id/footer_lay"
+        android:layout_below="@+id/header_lay"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/app_name"
+        android:paddingStart="@dimen/size25"
+        android:paddingEnd="@dimen/size25"
+        android:src="@drawable/temp_dashboard" />
+
+    <LinearLayout
+        android:id="@+id/footer_lay"
+        android:orientation="vertical"
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:layout_alignParentBottom="true">
+        <View
+            style="@style/LayoutWidMatch_HeiWrap"
+            android:background="@color/gray"
+            android:layout_height="@dimen/size1"/>
+
+        <include layout="@layout/ui_general_footer" />
+
+    </LinearLayout>
+</RelativeLayout>

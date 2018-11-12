@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/LayoutWidMatch_HeiWrap"
+    android:layout_marginTop="@dimen/size3"
+    android:layout_marginBottom="@dimen/size3"
+    app:cardCornerRadius="@dimen/size5">
+
+    <LinearLayout
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:layout_margin="@dimen/size8">
+
+        <ImageView
+            android:id="@+id/delete_img"
+            android:layout_width="@dimen/size20"
+            android:src="@drawable/remove"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center_vertical"
+            android:visibility="gone"
+            android:contentDescription="@string/app_name"
+            android:layout_height="@dimen/size20" />
+
+        <TextView
+            android:id="@+id/user_name_txt"
+            style="@style/TextOpenSansRegular"
+            android:layout_marginStart="@dimen/size5"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text12" />
+
+        <TextView
+            android:id="@+id/user_status_txt"
+            style="@style/TextOpenSansRegular"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:layout_marginStart="@dimen/size5"
+            android:gravity="start" android:layout_gravity="center_vertical"
+
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text12" />
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_welcome_parent_lay"
+    android:background="@drawable/app_bg"
+    style="@style/LayoutMatch">
+
+
+    <ScrollView
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:layout_centerVertical="true">
+
+        <LinearLayout
+            android:id="@+id/admin_welcome_lay"
+            style="@style/LayoutWidMatch_HeiWrap"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <TextView
+                style="@style/TextOpenSansRegular"
+                android:text="@string/hello_admin_welcome"
+                android:layout_marginTop="@dimen/size30"
+                android:layout_width="wrap_content"
+                android:paddingTop="@dimen/size50"
+                android:layout_marginStart="@dimen/size30"
+                android:textSize="@dimen/text25" />
+            <ImageView
+                style="@style/LayoutWidMatch_HeiWrap"
+                android:layout_height="@dimen/size130"
+                android:layout_width="@dimen/size130"
+                android:layout_gravity="end"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/active_protective_logo" />
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

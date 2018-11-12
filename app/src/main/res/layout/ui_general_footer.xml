@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LayoutWidMatch_HeiWrap"
+    android:layout_height="@dimen/size45"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/footer_first_img"
+        style="@style/LayoutWidWei_HeiWrap"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="@string/app_name"
+        android:padding="@dimen/size12"
+        android:visibility="gone"
+        android:src="@mipmap/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/footer_second_img"
+        style="@style/LayoutWidWei_HeiWrap"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="@string/app_name"
+        android:padding="@dimen/size12"
+        android:visibility="gone"
+        android:src="@mipmap/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/footer_third_img"
+        style="@style/LayoutWidWei_HeiWrap"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="@string/app_name"
+        android:padding="@dimen/size10"
+        android:visibility="gone"
+        android:src="@mipmap/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/footer_fourth_img"
+        style="@style/LayoutWidWei_HeiWrap"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:visibility="gone"
+        android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="@string/app_name"
+        android:padding="@dimen/size12"
+        android:src="@mipmap/ic_launcher" />
+
+</LinearLayout>

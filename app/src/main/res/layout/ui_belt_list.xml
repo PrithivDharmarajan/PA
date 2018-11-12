@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/belt_list_parent_lay"
+    style="@style/LayoutMatch"
+    android:background="@drawable/app_bg">
+
+    <RelativeLayout
+        android:id="@+id/header_lay"
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:background="@color/blue">
+
+        <include layout="@layout/ui_general_header_with_start_end_txt_view" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:layout_above="@id/footer_lay"
+        android:layout_below="@+id/header_lay">
+
+        <ScrollView
+            android:id="@+id/no_belt_lay"
+            style="@style/LayoutWidMatch_HeiWrap"
+            android:layout_centerVertical="true">
+
+            <LinearLayout
+                style="@style/LayoutWidMatch_HeiWrap"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    style="@style/LayoutWidMatch_HeiWrap"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        style="@style/LayoutWidMatch_HeiWrap"
+                        android:layout_width="@dimen/size65"
+                        android:layout_height="@dimen/size65"
+                        android:layout_gravity="end"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/app_name"
+                        android:paddingStart="@dimen/size20"
+                        android:paddingEnd="0dip"
+                        android:src="@drawable/active_protective_logo" />
+
+                    <TextView
+                        style="@style/TextOpenSansRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginStart="@dimen/size10"
+                        android:gravity="bottom"
+                        android:text="@string/hello_admin_welcome"
+                        android:textSize="@dimen/text25" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="@dimen/size65"
+                    android:padding="@dimen/size10"
+                    android:text="@string/no_belt_added"
+                    android:textSize="@dimen/text13" />
+
+
+                <Button
+                    android:id="@+id/scan_qr_code_btn"
+                    style="@style/ButtonOpenSansSemiBold"
+                    android:layout_marginStart="@dimen/size20"
+                    android:layout_marginTop="@dimen/size20"
+                    android:layout_marginEnd="@dimen/size20"
+                    android:layout_marginBottom="@dimen/size10"
+                    android:text="@string/scan_qr_code_start"
+                    tools:targetApi="lollipop" />
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/belt_lay"
+            style="@style/LayoutWidMatch_HeiWrap"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/size5"
+            android:paddingStart="@dimen/size20"
+            android:paddingEnd="@dimen/size20" >
+
+            <LinearLayout
+                style="@style/LayoutWidMatch_HeiWrap"
+                android:layout_margin="@dimen/size5"
+                tools:ignore="UseCompoundDrawables">
+
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:layout_marginStart="@dimen/size5"
+                    android:text="@string/belt_user_list"
+                    android:textSize="@dimen/text13" />
+
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@string/status"
+                    android:layout_marginStart="@dimen/size5"
+                    android:textSize="@dimen/text13" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/belt_recycler_view"
+                style="@style/LayoutWidMatch_HeiWrap" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/footer_lay"
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:layout_alignParentBottom="true">
+
+        <include layout="@layout/ui_general_footer" />
+    </RelativeLayout>
+</RelativeLayout>

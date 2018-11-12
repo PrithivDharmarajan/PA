@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/belt_details_parent_lay"
+    style="@style/LayoutMatch">
+
+    <RelativeLayout
+        android:id="@+id/header_lay"
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:background="@color/blue">
+
+        <include layout="@layout/ui_general_header_with_start_end_btn_view" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        style="@style/LayoutMatch"
+        android:layout_above="@+id/footer_lay"
+        android:layout_below="@+id/header_lay">
+
+        <LinearLayout
+            style="@style/LayoutWidMatch_HeiWrap"
+            android:orientation="vertical"
+            android:padding="@dimen/size20">
+
+            <TextView
+                style="@style/TextOpenSansRegular"
+                android:layout_width="wrap_content"
+                android:text="@string/serial_number"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text12" />
+
+            <EditText
+                android:id="@+id/serial_number_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size3"
+                android:background="@drawable/highlight_bule_bg"
+                android:gravity="end|center"
+                android:hint="@string/enter_serial_number"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:inputType="text"
+                android:maxLines="1"
+                android:maxLength="25"
+                android:paddingStart="@dimen/size5"
+                android:paddingEnd="@dimen/size15"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill,TextFields" />
+
+            <TextView
+                style="@style/TextOpenSansRegular"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/size10"
+                android:text="@string/mac_address"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text12" />
+
+            <EditText
+                android:id="@+id/mac_address_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size3"
+                android:background="@drawable/blue_white_bg"
+                android:gravity="end|center"
+                android:hint="@string/enter_mac_address"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingStart="@dimen/size5"
+                android:paddingEnd="@dimen/size15"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill" />
+
+            <TextView
+                style="@style/TextOpenSansRegular"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/size10"
+                android:text="@string/ssid"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text12" />
+
+            <EditText
+                android:id="@+id/ssid_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size3"
+                android:background="@drawable/blue_white_bg"
+                android:gravity="end|center"
+                android:hint="@string/enter_ssid"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:inputType="text"
+                android:maxLines="1"
+                android:maxLength="32"
+                android:paddingStart="@dimen/size5"
+                android:paddingEnd="@dimen/size15"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill" />
+
+            <TextView
+                style="@style/TextOpenSansRegular"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/size10"
+                android:text="@string/password"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text12" />
+
+            <EditText
+                android:id="@+id/password_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size3"
+                android:background="@drawable/blue_white_bg"
+                android:gravity="end|center"
+                android:hint="@string/enter_password"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingStart="@dimen/size5"
+                android:paddingEnd="@dimen/size15"
+                android:maxLength="64"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill,TextFields" />
+
+            <TextView
+                style="@style/TextOpenSansRegular"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/size10"
+                android:text="@string/size"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text12" />
+
+            <EditText
+                android:id="@+id/size_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size3"
+                android:background="@drawable/blue_white_bg"
+                android:gravity="end|center"
+                android:hint="@string/enter_size"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingStart="@dimen/size5"
+                android:paddingEnd="@dimen/size15"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill,TextFields" />
+
+            <TextView
+                style="@style/TextOpenSansRegular"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/size10"
+                android:text="@string/model"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text12" />
+
+            <EditText
+                android:id="@+id/model_edt"
+                style="@style/EditTextOpenSansRegular"
+                android:layout_marginTop="@dimen/size3"
+                android:background="@drawable/blue_white_bg"
+                android:gravity="end|center"
+                android:hint="@string/enter_model"
+                android:imeActionId="100"
+                android:imeOptions="actionDone|flagNoExtractUi"
+                android:inputType="text"
+                android:maxLines="1"
+                android:maxLength="25"
+                android:paddingStart="@dimen/size5"
+                android:paddingEnd="@dimen/size15"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="Autofill" />
+
+            <LinearLayout
+                android:id="@+id/assigned_user_lay"
+                style="@style/LayoutWidMatch_HeiWrap"
+                android:visibility="gone"
+                android:orientation="vertical">
+                <TextView
+                    style="@style/TextOpenSansRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/size10"
+                    android:text="@string/assigned_user"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text12" />
+
+                <EditText
+                    android:id="@+id/assigned_user_edt"
+                    style="@style/EditTextOpenSansRegular"
+                    android:layout_marginTop="@dimen/size3"
+                    android:background="@drawable/blue_white_bg"
+                    android:gravity="end|center"
+                    android:hint="@string/enter_assigned_user"
+                    android:imeActionId="100"
+                    android:imeOptions="actionDone|flagNoExtractUi"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:maxLength="25"
+                    android:paddingStart="@dimen/size5"
+                    android:paddingEnd="@dimen/size15"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    tools:ignore="Autofill" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/footer_lay"
+        style="@style/LayoutWidMatch_HeiWrap"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/LayoutWidMatch_HeiWrap"
+            android:layout_marginStart="@dimen/size15"
+            android:gravity="center"
+            android:layout_marginEnd="@dimen/size15">
+
+            <Button
+                android:id="@+id/belt_status_btn"
+                style="@style/ButtonOpenSansSemiBold"
+                android:layout_width="0dip"
+                android:layout_marginStart="@dimen/size5"
+                android:layout_marginEnd="@dimen/size5"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:background="@drawable/blue_btn"
+                android:text="@string/belt_list"
+                android:textColor="@color/white"
+                tools:targetApi="lollipop" />
+
+            <Button
+                android:id="@+id/configure_status_btn"
+                style="@style/ButtonOpenSansSemiBold"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/size5"
+                android:layout_marginEnd="@dimen/size5"
+                android:background="@drawable/blue_btn"
+                android:text="@string/configure"
+                android:textColor="@color/white"
+                tools:targetApi="lollipop" />
+        </LinearLayout>
+
+
+        <include layout="@layout/ui_general_footer" />
+
+    </LinearLayout>
+</RelativeLayout>
