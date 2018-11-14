@@ -123,8 +123,7 @@ public class NetworkSetup extends BaseActivity {
             mPasswordEdt.requestFocus();
             DialogManager.getInstance().showAlertPopup(this, getString(R.string.plz_enter_password), this);
         }else {
-
-
+           previousScreen(BeltList.class);
         }
     }
 

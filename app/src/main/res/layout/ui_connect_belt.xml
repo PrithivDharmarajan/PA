@@ -37,13 +37,16 @@
 
                 <TextView
                     style="@style/TextOpenSansSemiBold"
-                    android:layout_width="wrap_content"
-                    android:layout_marginStart="@dimen/size65"
                     android:padding="@dimen/size15"
                     android:textColor="@color/blue"
                     android:text="@string/connect_to_belt_dot"
                     android:textSize="@dimen/text18" />
-
+                <TextView
+                    android:id="@+id/attempt_num_txt"
+                    style="@style/TextOpenSansSemiBold"
+                    android:textColor="@color/blue"
+                    android:text="@string/attempt_num"
+                    android:textSize="@dimen/text14" />
 
                 <Button
                     android:id="@+id/cancel_btn"

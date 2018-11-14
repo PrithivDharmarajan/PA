@@ -281,6 +281,9 @@ public class AddBelt extends BaseActivity {
         if (serialNumberStr.isEmpty()) {
             mSerialNumberEdt.requestFocus();
             DialogManager.getInstance().showAlertPopup(this, getString(R.string.plz_enter_serial_number), this);
+        }else if (serialNumberStr.length()< 9) {
+            mSerialNumberEdt.requestFocus();
+            DialogManager.getInstance().showAlertPopup(this, getString(R.string.serial_contains_eight_char), this);
         } else if (macAddressStr.isEmpty()) {
             mMacAddressEdt.requestFocus();
             DialogManager.getInstance().showAlertPopup(this, getString(R.string.plz_enter_mac_address), this);
@@ -327,7 +330,9 @@ public class AddBelt extends BaseActivity {
             addDeviceArrFirstEntity.setVibrationLevel(4);
             addDeviceArrFirstEntity.setVolumeLevel(4);
             addDeviceArrFirstEntity.setWiFiConfiguredStatus(4);
+            addDeviceArrFirstEntity.setPersButton(0);
 
+//            addDeviceArrSecondEntity.setDeviceId(serialNumberStr);
 //            addDeviceArrSecondEntity.setCommunityId(userDetailsEntityRes.getCommunityId());
 //            addDeviceArrSecondEntity.setCommunityName(userDetailsEntityRes.getCommunityName());
 //            addDeviceArrSecondEntity.setAccountId(userDetailsEntityRes.getAccountId());
@@ -346,6 +351,7 @@ public class AddBelt extends BaseActivity {
 //            addDeviceArrSecondEntity.setVibrationLevel(4);
 //            addDeviceArrSecondEntity.setVolumeLevel(4);
 //            addDeviceArrSecondEntity.setWiFiConfiguredStatus(4);
+//            addDeviceArrFirstEntity.setPersButton(0);
 
 
             addDeviceArrEntityList.add(addDeviceArrFirstEntity);

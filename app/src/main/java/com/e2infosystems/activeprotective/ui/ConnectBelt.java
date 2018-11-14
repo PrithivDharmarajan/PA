@@ -7,12 +7,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiConfiguration;
-import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -44,8 +46,12 @@ public class ConnectBelt extends BaseActivity {
     @BindView(R.id.header_txt)
     TextView mHeaderTxt;
 
+    @BindView(R.id.attempt_num_txt)
+    TextView mḀttemptNumTxt;
+
     private BroadcastReceiver mBroadcastReceiver;
-    private boolean mIsCorrectWifiBool = false;
+    private boolean mIsCorrectWifiBool = false, mIsFailedPopupShowBool = false;
+    private int mḀttemptNumInt = 1;
 
     @Override
 
@@ -70,10 +76,10 @@ public class ConnectBelt extends BaseActivity {
 
 
         if (askPermissions()) {
-            connectToAP(AppConstants.BELT_DETAILS.getDevSSID(), AppConstants.BELT_DETAILS.getDevPasswd());
-//            connectToAP("JioFi2_D3DABA_NAKUL", "Vino@5577");
+            connectToWifi(AppConstants.BELT_DETAILS.getDevSSID(), AppConstants.BELT_DETAILS.getDevPasswd());
         }
 
+        setAttemptNum(mḀttemptNumInt);
 
     }
 
@@ -113,7 +119,7 @@ public class ConnectBelt extends BaseActivity {
         }
     }
 
-    public void connectToAP(String SSIDStr, String passwordStr) {
+    public void connectToWifi(final String SSIDStr, final String passwordStr) {
         WifiConfiguration wifiConfiguration = new WifiConfiguration();
         final WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         boolean wifiEnabled = Objects.requireNonNull(wifiManager).isWifiEnabled();
@@ -128,24 +134,76 @@ public class ConnectBelt extends BaseActivity {
         mBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                String connectedWifiSSIDStr = wifiManager.getConnectionInfo().getSSID().replaceAll("\"","");
-                if (!mIsCorrectWifiBool && (AppConstants.BELT_DETAILS.getDevSSID().matches(connectedWifiSSIDStr))) {
-                    mIsCorrectWifiBool = true;
-                    nextScreen(NetworkSetup.class);
-                } else if (!mIsCorrectWifiBool) {
-                    DialogManager.getInstance().showToast(ConnectBelt.this, "Failed to connect the Wifi");
-                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo networkInfo = Objects.requireNonNull(connManager).getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+                        if (networkInfo.isConnected()) {
+                            String connectedWifiSSIDStr = wifiManager.getConnectionInfo().getSSID().replaceAll("\"", "");
+
+                            sysOut("AppConstants.BELT_DETAILS.getDevSSID()---" + AppConstants.BELT_DETAILS.getDevSSID());
+                            sysOut("connectedWifiSSIDStr---" + connectedWifiSSIDStr);
+                            if (!mIsCorrectWifiBool && !mIsFailedPopupShowBool) {
+                                if (AppConstants.BELT_DETAILS.getDevSSID().matches(connectedWifiSSIDStr)) {
+                                    mIsCorrectWifiBool = true;
+                                    nextScreen(NetworkSetup.class);
+                                } else {
+                                    wifiErrorPopup(SSIDStr, passwordStr);
+                                }
+                            }
+                        } else if (!mIsCorrectWifiBool && !mIsFailedPopupShowBool) {
+                            wifiErrorPopup(SSIDStr, passwordStr);
+                        }
+
+                    }
+                });
 
 
             }
         };
-
         wifiManager.enableNetwork(netId, true);
         registerReceiver(mBroadcastReceiver, new IntentFilter(WifiManager.NETWORK_STATE_CHANGED_ACTION));
         wifiManager.reconnect();
 
     }
 
+
+    private void wifiErrorPopup(final String SSIDStr, final String passwordStr) {
+        mIsFailedPopupShowBool = true;
+        DialogManager.getInstance().showOptionPopup(ConnectBelt.this, String.format(getString(R.string.failed_connect_wifi), SSIDStr), getString(R.string.retry), getString(R.string.cancel), new InterfaceTwoBtnCallback() {
+            @Override
+            public void onNegativeClick() {
+                mIsFailedPopupShowBool = false;
+                if (mBroadcastReceiver != null)
+                    unregisterReceiver(mBroadcastReceiver);
+
+                backScreen();
+            }
+
+            @Override
+            public void onPositiveClick() {
+                mIsFailedPopupShowBool = false;
+                if (mBroadcastReceiver != null)
+                    unregisterReceiver(mBroadcastReceiver);
+
+                setAttemptNum(mḀttemptNumInt + 1);
+                connectToWifi(SSIDStr, passwordStr);
+            }
+        });
+    }
+
+    private void setAttemptNum(final int attemptNumInt) {
+        mḀttemptNumInt = attemptNumInt;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mḀttemptNumTxt.setText(String.format(getString(R.string.attempt_num), String.valueOf(attemptNumInt)));
+            }
+        });
+    }
 
     /*To get permission for access image camera and storage*/
     private boolean askPermissions() {
@@ -166,7 +224,7 @@ public class ConnectBelt extends BaseActivity {
             addPermission = askAccessPermission(listPermissionsNeeded, 1, new InterfaceTwoBtnCallback() {
                 @Override
                 public void onPositiveClick() {
-                    connectToAP(AppConstants.BELT_DETAILS.getDevSSID(), AppConstants.BELT_DETAILS.getDevPasswd());
+                    connectToWifi(AppConstants.BELT_DETAILS.getDevSSID(), AppConstants.BELT_DETAILS.getDevPasswd());
                 }
 
                 public void onNegativeClick() {
@@ -182,7 +240,7 @@ public class ConnectBelt extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         if (mBroadcastReceiver != null)
-            unregisterReceiver(mBroadcastReceiver);
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver);
     }
 
     @Override

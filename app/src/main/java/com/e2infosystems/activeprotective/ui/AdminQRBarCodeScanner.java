@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.e2infosystems.activeprotective.R;
 import com.e2infosystems.activeprotective.input.model.AddBeltEntity;
@@ -88,12 +87,15 @@ public class AdminQRBarCodeScanner extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
+
         sysOut("QR onPause");
-        if (mCameraSource != null) {
-            mCameraSource.release();
+        if (mCameraSource != null)
             mCameraSource.stop();
-        }
+
+
     }
+
+
 
     private void initView() {
 
@@ -297,6 +299,7 @@ public class AdminQRBarCodeScanner extends BaseActivity {
                 addDeviceArrFirstEntity.setVibrationLevel(4);
                 addDeviceArrFirstEntity.setVolumeLevel(4);
                 addDeviceArrFirstEntity.setWiFiConfiguredStatus(4);
+                addDeviceArrFirstEntity.setPersButton(0);
 
 //                addDeviceArrSecondEntity.setCommunityId(userDetailsEntityRes.getCommunityId());
 //                addDeviceArrSecondEntity.setCommunityName(userDetailsEntityRes.getCommunityName());

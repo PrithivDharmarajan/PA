@@ -72,6 +72,7 @@
     <string name="save">Save</string>
 
     <string name="plz_enter_serial_number">Please Enter Serial Number</string>
+    <string name="serial_contains_eight_char">Serial Numbe must have at least Eight Characters</string>
     <string name="plz_enter_mac_address">Please Enter MAC Address</string>
     <string name="plz_enter_ssid">Please Enter SSID</string>
     <string name="plz_enter_model">Please Enter Model</string>
@@ -126,6 +127,7 @@
     <string name="connect_to_belt">Connect to Belt</string>
     <string name="connect_to_belt_dot">Connect to Belt&#8230;</string>
     <string name="cancel">Cancel</string>
+    <string name="attempt_num">Attempt No: %1$s</string>
 
     <!--AdminDashboard-->
     <string name="dashboard">Dashboard</string>
@@ -145,6 +147,7 @@
     <string name="logged_in_success">Logged In Successfully</string>
     <string name="logout_msg">Are you sure you want to Logout?</string>
     <string name="exit_msg">Press again to exit</string>
+    <string name="failed_connect_wifi">Failed to connect the Wi-Fi Network " %1$s "</string>
 
     <!--Temp-->
     <string name="settings">Settings</string>

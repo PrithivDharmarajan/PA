@@ -4,15 +4,18 @@ import java.io.Serializable;
 
 public class AddBeltEntity implements Serializable {
 
+
+
     private String deviceId = "";
-    private String communityName = "";
-    private String accountId = "";
     private String communityId = "";
+    private String accountId = "";
+    private String communityName = "";
     private String devSSID = "";
     private String devPasswd = "";
     private String devMAC = "";
     private String devModal = "";
     private String devSize = "";
+
 
     private int ledIntensity = 0;
     private int systemAlert = 0;
@@ -20,9 +23,20 @@ public class AddBeltEntity implements Serializable {
     private int buckleAlert = 0;
     private int deviceAlwaysOn = 0;
     private int userAlert = 0;
-    private int vibrationLevel = 0;
     private int volumeLevel = 0;
+    private int vibrationLevel = 0;
     private int wiFiConfiguredStatus = 0;
+    private int persButton = 0;
+
+
+
+    public int getPersButton() {
+        return persButton;
+    }
+
+    public void setPersButton(int persButton) {
+        this.persButton = persButton;
+    }
 
     public String getCommunityName() {
         return communityName;
