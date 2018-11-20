@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.e2infosystems.activeprotective.R;
@@ -49,6 +50,9 @@ public class BeltList extends BaseActivity {
 
     @BindView(R.id.header_center_txt)
     TextView mHeaderCenterTxt;
+
+//    @BindView(R.id.clock_txt)
+//    TextClock mClockTxt;
 
     @BindView(R.id.header_end_txt)
     TextView mHeaderEndTxt;
@@ -93,6 +97,8 @@ public class BeltList extends BaseActivity {
         mHeaderStartTxt.setText(getString(R.string.edit));
         mHeaderCenterTxt.setText(getString( R.string.belt_list));
         mHeaderEndTxt.setText(getString(R.string.edit));
+//        mClockTxt.setFormat24Hour("hh:mm a");
+//        mClockTxt.setFormat12Hour("hh:mm a");
         setHeaderAdjustmentView();
         setFooterView();
         beltListAPI();
@@ -172,7 +178,7 @@ public class BeltList extends BaseActivity {
                     public void onPositiveClick() {
                         LoginResponse userDetailsRes = new LoginResponse();
                         PreferenceUtil.storeUserDetails(BeltList.this, userDetailsRes);
-                        previousScreen(GeneralWelcome.class);
+                        previousScreen(AdminLogin.class);
                     }
                 });
                 break;

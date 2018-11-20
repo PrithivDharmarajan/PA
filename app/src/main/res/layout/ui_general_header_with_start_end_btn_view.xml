@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@color/blue"
-    style="@style/LayoutWidMatch_HeiWrap">
+    style="@style/LayoutWidMatch_HeiWrap"
+    app:cardBackgroundColor="@color/blue">
 
     <RelativeLayout
         style="@style/LayoutWidMatch_HeiWrap"
         android:layout_height="@dimen/size45">
 
-        <TextView
-            android:id="@+id/header_txt"
-            style="@style/TextOpenSansSemiBold"
-            android:layout_height="match_parent"
+        <LinearLayout
+            style="@style/LayoutMatch"
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/header_end_img_lay"
             android:layout_toEndOf="@+id/header_start_img_lay"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:singleLine="true"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text17" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/header_txt"
+                style="@style/TextOpenSansSemiBold"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text16" />
+            <TextClock
+                android:id="@+id/clock_txt"
+                style="@style/TextOpenSansRegular"
+                android:format12Hour="hh:mm:ss a"
+                android:format24Hour="hh:mm:ss a"
+                android:gravity="center_horizontal"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text14"  />
+        </LinearLayout>
+
+
 
 
         <RelativeLayout

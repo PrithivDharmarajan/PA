@@ -19,10 +19,7 @@
         android:scrollbars="none">
 
         <LinearLayout
-            style="@style/LayoutMatch"
-            android:layout_marginStart="@dimen/size7"
-            android:layout_marginEnd="@dimen/size7"
-            android:orientation="vertical">
+            style="@style/LayoutMatch" >
 
             <WebView
                 android:id="@+id/web_view"

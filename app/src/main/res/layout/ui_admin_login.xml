@@ -8,6 +8,7 @@
 
     <ScrollView
         style="@style/LayoutWidMatch_HeiWrap"
+        android:layout_marginBottom="@dimen/size27"
         android:layout_centerVertical="true">
 
         <LinearLayout
@@ -85,5 +86,13 @@
     </ScrollView>
 
 
+    <TextView
+        android:id="@+id/version_txt"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/size10"
+        style="@style/TextOpenSansRegular"
+        android:layout_centerVertical="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text10" />
 
 </RelativeLayout>

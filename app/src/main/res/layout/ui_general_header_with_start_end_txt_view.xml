@@ -7,14 +7,36 @@
     <RelativeLayout
         style="@style/LayoutWidMatch_HeiWrap"
         android:layout_height="@dimen/size45">
-
-        <TextView
-            android:id="@+id/header_center_txt"
-            style="@style/TextOpenSansSemiBold"
-            android:layout_height="match_parent"
+        <LinearLayout
+            style="@style/LayoutMatch"
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/header_end_txt"
             android:layout_toEndOf="@+id/header_start_txt"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/header_center_txt"
+                style="@style/TextOpenSansSemiBold"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text16" />
+
+            <TextClock
+                android:id="@+id/clock_txt"
+                style="@style/TextOpenSansRegular"
+                android:format12Hour="hh:mm:ss a"
+                android:format24Hour="hh:mm:ss a"
+                android:gravity="center_horizontal"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text14"  />
+        </LinearLayout>
+        <TextView
+            style="@style/TextOpenSansSemiBold"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"

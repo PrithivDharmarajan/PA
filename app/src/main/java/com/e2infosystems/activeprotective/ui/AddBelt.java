@@ -222,7 +222,7 @@ public class AddBelt extends BaseActivity {
                     public void onPositiveClick() {
                         LoginResponse userDetailsRes = new LoginResponse();
                         PreferenceUtil.storeUserDetails(AddBelt.this, userDetailsRes);
-                        previousScreen(GeneralWelcome.class);
+                        previousScreen(AdminLogin.class);
                     }
                 });
                 break;
@@ -281,7 +281,7 @@ public class AddBelt extends BaseActivity {
         if (serialNumberStr.isEmpty()) {
             mSerialNumberEdt.requestFocus();
             DialogManager.getInstance().showAlertPopup(this, getString(R.string.plz_enter_serial_number), this);
-        }else if (serialNumberStr.length()< 9) {
+        }else if (serialNumberStr.length()< 8) {
             mSerialNumberEdt.requestFocus();
             DialogManager.getInstance().showAlertPopup(this, getString(R.string.serial_contains_eight_char), this);
         } else if (macAddressStr.isEmpty()) {

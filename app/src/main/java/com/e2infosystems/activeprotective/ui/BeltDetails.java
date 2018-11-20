@@ -320,7 +320,7 @@ public class BeltDetails extends BaseActivity {
                     public void onPositiveClick() {
                         LoginResponse userDetailsRes = new LoginResponse();
                         PreferenceUtil.storeUserDetails(BeltDetails.this, userDetailsRes);
-                        previousScreen(GeneralWelcome.class);
+                        previousScreen(AdminLogin.class);
                     }
                 });
                 break;
@@ -366,7 +366,7 @@ public class BeltDetails extends BaseActivity {
             AppConstants.BELT_DETAILS.setDevSize(sizeStr);
             AppConstants.BELT_DETAILS.setDevModal(modelStr);
 
-            nextScreen(Introduction.class);
+            nextScreen(Instructions.class);
         }
     }
 

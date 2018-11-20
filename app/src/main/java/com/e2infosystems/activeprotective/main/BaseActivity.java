@@ -192,6 +192,8 @@ public class BaseActivity extends AppCompatActivity implements InterfaceTwoBtnCa
             mActivity.overridePendingTransition(R.anim.slide_out_right,
                     R.anim.slide_in_left);
             mActivity.finish();
+        }else{
+            finishAffinity();
         }
     }
 

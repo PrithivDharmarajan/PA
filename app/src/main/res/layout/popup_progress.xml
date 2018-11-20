@@ -1,7 +1,21 @@
-<ProgressBar xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    style="@style/LayoutWrap"
-    android:layout_gravity="center"
-    android:indeterminate="true"
-    android:indeterminateDrawable="@drawable/progress_bar"
-    tools:targetApi="lollipop" />
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/size60"
+    android:layout_height="@dimen/size60"
+    android:layout_gravity="center">
+
+    <ImageView
+        style="@style/LayoutMatch"
+        android:layout_centerVertical="true"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/circle_blue_white_bg" />
+
+    <pl.droidsonroids.gif.GifImageView
+        style="@style/LayoutMatch"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/size10"
+        android:src="@drawable/loader_img" />
+</RelativeLayout>
+

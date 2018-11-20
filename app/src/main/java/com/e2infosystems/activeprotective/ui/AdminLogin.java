@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.e2infosystems.activeprotective.BuildConfig;
 import com.e2infosystems.activeprotective.R;
 import com.e2infosystems.activeprotective.input.model.LoginEntity;
 import com.e2infosystems.activeprotective.main.BaseActivity;
@@ -41,6 +42,9 @@ public class AdminLogin extends BaseActivity {
     @BindView(R.id.password_edt)
     EditText mPasswordEdt;
 
+    @BindView(R.id.version_txt)
+    TextView mVersionTxt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +72,7 @@ public class AdminLogin extends BaseActivity {
             }
         });
 
+        mVersionTxt.setText(String.format(getString(R.string.version), BuildConfig.VERSION_NAME));
         setHeaderAdjustmentView();
     }
 

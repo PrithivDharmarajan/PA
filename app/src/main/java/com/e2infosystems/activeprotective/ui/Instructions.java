@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class Introduction extends BaseActivity {
+public class Instructions extends BaseActivity {
 
     @BindView(R.id.introduction_parent_lay)
     ViewGroup mIntroductionViewGroup;
@@ -31,7 +31,7 @@ public class Introduction extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ui_introduction);
+        setContentView(R.layout.ui_instructions);
         initView();
     }
 
@@ -44,7 +44,7 @@ public class Introduction extends BaseActivity {
         /*Keypad to be hidden when a touch made outside the edit text*/
         setupUI(mIntroductionViewGroup);
 
-        mHeaderTxt.setText(getString(R.string.introduction));
+        mHeaderTxt.setText(getString(R.string.instructions));
 
         setHeaderAdjustmentView();
     }
@@ -66,7 +66,7 @@ public class Introduction extends BaseActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mHeaderLay.setPadding(0, getStatusBarHeight(Introduction.this), 0, 0);
+                            mHeaderLay.setPadding(0, getStatusBarHeight(Instructions.this), 0, 0);
                         }
                     });
                 }
@@ -75,13 +75,13 @@ public class Introduction extends BaseActivity {
     }
 
     /*View onClick*/
-    @OnClick({R.id.header_start_img_lay,R.id.configure_btn})
+    @OnClick({R.id.header_start_img_lay,R.id.connect_btn})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.header_start_img_lay:
                 onBackPressed();
                 break;
-            case R.id.configure_btn:
+            case R.id.connect_btn:
                 nextScreen(ConnectBelt.class);
                 break;
         }

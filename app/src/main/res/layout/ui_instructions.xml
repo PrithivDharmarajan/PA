@@ -34,14 +34,14 @@
 
 
             <Button
-                android:id="@+id/configure_btn"
+                android:id="@+id/connect_btn"
                 style="@style/ButtonOpenSansSemiBold"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/size30"
                 android:paddingStart="@dimen/size30"
                 android:paddingEnd="@dimen/size30"
-                android:text="@string/configure"
+                android:text="@string/connect"
                 tools:targetApi="lollipop" />
         </LinearLayout>
 

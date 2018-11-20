@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.e2infosystems.activeprotective.BuildConfig;
 import com.e2infosystems.activeprotective.R;
 import com.e2infosystems.activeprotective.main.BaseActivity;
 import com.e2infosystems.activeprotective.utils.AppConstants;
@@ -25,6 +27,9 @@ public class GeneralWelcome extends BaseActivity {
     @BindView(R.id.active_protective_lay)
     LinearLayout mActiveProtectiveLay;
 
+    @BindView(R.id.version_txt)
+    TextView mVersionTxt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +46,7 @@ public class GeneralWelcome extends BaseActivity {
         /*Keypad to be hidden when a touch made outside the edit text*/
         setupUI(mWelcomeViewGroup);
 
+        mVersionTxt.setText(String.format(getString(R.string.version), BuildConfig.VERSION_NAME));
         setHeaderAdjustmentView();
     }
 
