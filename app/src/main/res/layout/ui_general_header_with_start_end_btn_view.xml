@@ -13,6 +13,7 @@
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/header_end_img_lay"
             android:layout_toEndOf="@+id/header_start_img_lay"
+            android:gravity="center"
             android:orientation="vertical">
 
             <TextView

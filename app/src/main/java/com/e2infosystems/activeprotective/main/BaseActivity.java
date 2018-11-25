@@ -205,7 +205,6 @@ public class BaseActivity extends AppCompatActivity implements InterfaceTwoBtnCa
 
     /*API call back failure*/
     public void onRequestFailure(Object inputModelObj, Throwable t) {
-        sysOut("Retrofit onRequestFailure" + t.toString());
         if (t.getMessage() != null && !t.getMessage().isEmpty() && !(t instanceof IOException)) {
             DialogManager.getInstance().showAlertPopup(mActivity, t.getMessage(), new InterfaceBtnCallback() {
                 @Override

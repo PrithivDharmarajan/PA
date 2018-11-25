@@ -186,32 +186,32 @@ public class BeltDetails extends BaseActivity {
 
 
         mSerialNumberEdt.setText(beltDetailsEntity.getDeviceId());
-        mSerialNumberEdt.setSelected(beltDetailsEntity.getDeviceId().isEmpty());
-        mSerialNumberEdt.setFocusableInTouchMode(beltDetailsEntity.getDeviceId().isEmpty());
+//        mSerialNumberEdt.setSelected(beltDetailsEntity.getDeviceId().isEmpty());
+//        mSerialNumberEdt.setFocusableInTouchMode(beltDetailsEntity.getDeviceId().isEmpty());
 
         mMacAddressEdt.setText(beltDetailsEntity.getDevMAC());
-        mMacAddressEdt.setSelected(beltDetailsEntity.getDevMAC().isEmpty());
-        mMacAddressEdt.setFocusableInTouchMode(beltDetailsEntity.getDevMAC().isEmpty());
+//        mMacAddressEdt.setSelected(beltDetailsEntity.getDevMAC().isEmpty());
+//        mMacAddressEdt.setFocusableInTouchMode(beltDetailsEntity.getDevMAC().isEmpty());
 
         mSSIDEdt.setText(beltDetailsEntity.getDevSSID());
-        mSSIDEdt.setSelected(beltDetailsEntity.getDevSSID().isEmpty());
-        mSSIDEdt.setFocusableInTouchMode(beltDetailsEntity.getDevSSID().isEmpty());
+//        mSSIDEdt.setSelected(beltDetailsEntity.getDevSSID().isEmpty());
+//        mSSIDEdt.setFocusableInTouchMode(beltDetailsEntity.getDevSSID().isEmpty());
 
         mPasswordEdt.setText(beltDetailsEntity.getDevPasswd());
-        mPasswordEdt.setSelected(beltDetailsEntity.getDevPasswd().isEmpty());
-        mPasswordEdt.setFocusableInTouchMode(beltDetailsEntity.getDevPasswd().isEmpty());
+//        mPasswordEdt.setSelected(beltDetailsEntity.getDevPasswd().isEmpty());
+//        mPasswordEdt.setFocusableInTouchMode(beltDetailsEntity.getDevPasswd().isEmpty());
 
         mSizeEdt.setText(beltDetailsEntity.getDevSize());
-        mSizeEdt.setSelected(beltDetailsEntity.getDevSize().isEmpty());
-        mSizeEdt.setFocusableInTouchMode(beltDetailsEntity.getDevSize().isEmpty());
+//        mSizeEdt.setSelected(beltDetailsEntity.getDevSize().isEmpty());
+//        mSizeEdt.setFocusableInTouchMode(beltDetailsEntity.getDevSize().isEmpty());
 
         mModelEdt.setText(beltDetailsEntity.getDevModal());
-        mModelEdt.setSelected(beltDetailsEntity.getDevModal().isEmpty());
-        mModelEdt.setFocusableInTouchMode(beltDetailsEntity.getDevModal().isEmpty());
+//        mModelEdt.setSelected(beltDetailsEntity.getDevModal().isEmpty());
+//        mModelEdt.setFocusableInTouchMode(beltDetailsEntity.getDevModal().isEmpty());
 
         mAssignedUserEdt.setText(beltDetailsEntity.getUserName());
-        mAssignedUserEdt.setSelected(beltDetailsEntity.getUserName().isEmpty());
-        mAssignedUserEdt.setFocusableInTouchMode(beltDetailsEntity.getUserName().isEmpty());
+//        mAssignedUserEdt.setSelected(beltDetailsEntity.getUserName().isEmpty());
+//        mAssignedUserEdt.setFocusableInTouchMode(beltDetailsEntity.getUserName().isEmpty());
 
         if (AppConstants.IS_FROM_BELT_LIST_BOOL) {
             mAssignedUserLay.setVisibility(beltDetailsEntity.getAssignStatus() == AppConstants.SUCCESS_CODE ? View.VISIBLE : View.GONE);
@@ -388,8 +388,10 @@ public class BeltDetails extends BaseActivity {
                 public void run() {
                     mBeltStatusBtn.setText(getString(R.string.assign));
                     mAssignedUserLay.setVisibility(View.GONE);
-                    DialogManager.getInstance().showAlertPopup(BeltDetails.this, beltUnAssignResponse.getMessage(), BeltDetails.this);
-                }
+
+                    DialogManager.getInstance().showInfoPopup(BeltDetails.this,beltUnAssignResponse.getMessage());
+
+                 }
             });
         }
     }

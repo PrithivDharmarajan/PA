@@ -2,13 +2,15 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/LayoutWidMatch_HeiWrap"
-    android:layout_marginTop="@dimen/size3"
-    android:layout_marginBottom="@dimen/size3"
-    app:cardCornerRadius="@dimen/size5">
+    android:layout_marginTop="@dimen/size4"
+    android:layout_marginBottom="@dimen/size4"
+    app:cardCornerRadius="@dimen/size3">
 
     <LinearLayout
         style="@style/LayoutWidMatch_HeiWrap"
-        android:layout_margin="@dimen/size8">
+        android:paddingTop="@dimen/size2"
+        android:paddingBottom="@dimen/size2"
+        android:layout_margin="@dimen/size2" >
 
         <ImageView
             android:id="@+id/delete_img"
@@ -30,7 +32,7 @@
             android:gravity="start"
             android:layout_gravity="center_vertical"
             android:textColor="@color/blue"
-            android:textSize="@dimen/text12" />
+            android:textSize="@dimen/text11" />
 
         <TextView
             android:id="@+id/user_status_txt"
@@ -42,7 +44,7 @@
             android:gravity="start" android:layout_gravity="center_vertical"
 
             android:textColor="@color/blue"
-            android:textSize="@dimen/text12" />
+            android:textSize="@dimen/text10" />
 
     </LinearLayout>
 </android.support.v7.widget.CardView>

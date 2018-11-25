@@ -13,14 +13,19 @@
 
     </RelativeLayout>
 
-    <ImageView
-        style="@style/LayoutMatch"
+    <ScrollView
+        style="@style/LayoutWidMatch_HeiWrap"
         android:layout_below="@+id/header_lay"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/app_name"
-        android:paddingStart="@dimen/size25"
-        android:paddingEnd="@dimen/size25"
-        android:paddingBottom="@dimen/size25"
-        android:src="@drawable/temp_dashboard" />
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/LayoutMatch" >
+
+            <WebView
+                android:id="@+id/web_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

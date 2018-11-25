@@ -84,12 +84,12 @@
             android:orientation="vertical"
             android:visibility="gone"
             android:layout_marginTop="@dimen/size5"
-            android:paddingStart="@dimen/size20"
-            android:paddingEnd="@dimen/size20" >
+            android:paddingStart="@dimen/size10"
+            android:paddingEnd="@dimen/size10" >
 
             <LinearLayout
                 style="@style/LayoutWidMatch_HeiWrap"
-                android:layout_margin="@dimen/size5"
+                android:layout_margin="@dimen/size2"
                 tools:ignore="UseCompoundDrawables">
 
                 <TextView
@@ -97,9 +97,9 @@
                     android:layout_width="0dip"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:layout_marginStart="@dimen/size5"
+                    android:layout_marginStart="@dimen/size3"
                     android:text="@string/belt_user_list"
-                    android:textSize="@dimen/text13" />
+                    android:textSize="@dimen/text11" />
 
                 <TextView
                     style="@style/TextOpenSansRegular"
@@ -108,7 +108,7 @@
                     android:gravity="start"
                     android:text="@string/status"
                     android:layout_marginStart="@dimen/size5"
-                    android:textSize="@dimen/text13" />
+                    android:textSize="@dimen/text11" />
 
             </LinearLayout>
 

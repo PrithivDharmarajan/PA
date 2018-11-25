@@ -7,45 +7,23 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
-
 import com.e2infosystems.activeprotective.R;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 
 public class DialogManager {
 
     /*Init variable*/
-    private Dialog mProgressDialog, mNetworkErrorDialog, mAlertDialog, mOptionDialog, mLogoutDialog, mDeviceDisconnectOptionDialog, mDeviceDisconnectScheduleDialog, mForgotPwdDialog, mEdtDeviceNameDialog, mEdtDeviceLocDialog, mEdtDeviceNameLocDialog, mDevelopmentDialog, mAgentDialog;
+    private Dialog mProgressDialog, mNetworkErrorDialog, mInfoDialog, mAlertDialog, mOptionDialog;
     private Toast mToast;
-
-    private DatePickerDialog mDatePicker;
-    private TimePickerDialog mTimePicker;
-    private TextView mCurrentTxt;
-    private Context mContext;
 
     /*Init dialog instance*/
     private static final DialogManager sDialogInstance = new DialogManager();
@@ -96,6 +74,37 @@ public class DialogManager {
         return mCommonDialog;
     }
 
+    public void showInfoPopup(Context context, String messageStr) {
+
+        alertDismiss(mInfoDialog);
+        mInfoDialog = getDialog(context, R.layout.popup_info_alert);
+
+        WindowManager.LayoutParams LayoutParams = new WindowManager.LayoutParams();
+        Window window = mInfoDialog.getWindow();
+
+        if (window != null) {
+            LayoutParams.copyFrom(window.getAttributes());
+            LayoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+            LayoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            window.setAttributes(LayoutParams);
+            window.setGravity(Gravity.CENTER);
+        }
+
+        TextView alertMsgTxt;
+        Button alertPositiveBtn;
+
+        /*Init view*/
+        alertMsgTxt = mInfoDialog.findViewById(R.id.alert_msg_txt);
+
+        /*Set data*/
+        alertMsgTxt.setText(messageStr);
+
+        mInfoDialog.setCancelable(true);
+        mInfoDialog.setCanceledOnTouchOutside(true);
+        alertShowing(mInfoDialog);
+
+    }
+
 
     public void showAlertPopup(Context context, String messageStr, final InterfaceBtnCallback dialogAlertInterface) {
 
@@ -123,9 +132,6 @@ public class DialogManager {
         /*Set data*/
         alertMsgTxt.setText(messageStr);
         alertPositiveBtn.setText(context.getString(R.string.ok));
-
-        //Check and set button visibility
-        alertPositiveBtn.setVisibility(View.VISIBLE);
 
         alertPositiveBtn.setOnClickListener(new View.OnClickListener() {
             @Override

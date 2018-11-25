@@ -13,20 +13,17 @@
         <include layout="@layout/ui_general_header_with_start_end_btn_view" />
 
     </RelativeLayout>
-    <ScrollView
-        style="@style/LayoutWidMatch_HeiWrap"
-        android:layout_below="@+id/header_lay"
-        android:scrollbars="none">
 
         <LinearLayout
+            android:layout_below="@+id/header_lay"
             style="@style/LayoutMatch" >
 
             <WebView
                 android:id="@+id/web_view"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-    </ScrollView>
 
 
 </RelativeLayout>

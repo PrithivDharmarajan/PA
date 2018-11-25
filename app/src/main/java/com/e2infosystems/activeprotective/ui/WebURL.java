@@ -120,6 +120,8 @@ public class WebURL extends BaseActivity {
         mWebView.getSettings().setAllowFileAccess(true);
         mWebView.getSettings().setAllowFileAccessFromFileURLs(true);
         mWebView.getSettings().setAllowUniversalAccessFromFileURLs(true);
+        mWebView.setVerticalScrollBarEnabled(true);
+        mWebView.setHorizontalScrollBarEnabled(true);
         mWebView.setWebViewClient(new MyWebViewClient());
         mWebView.setWebChromeClient(new WebChromeClient());
         mWebView.loadUrl(mWebURLStr);
@@ -141,6 +143,7 @@ public class WebURL extends BaseActivity {
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
+            mWebView.setVisibility(View.VISIBLE);
             DialogManager.getInstance().hideProgress();
 
             LoginResponse userDetails = PreferenceUtil.getUserDetails(WebURL.this);

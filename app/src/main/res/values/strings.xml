@@ -14,6 +14,7 @@
     <string name="enter_password">Enter Password</string>
     <string name="submit">Submit</string>
     <string name="user_login">User Login</string>
+    <string name="welcome_user">Welcome, %1$s </string>
 
     <string name="plz_enter_email_user_id">Please Enter Email/User ID </string>
     <string name="plz_enter_password">Please Enter Password</string>

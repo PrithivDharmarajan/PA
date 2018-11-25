@@ -32,6 +32,7 @@ public class AppConstants {
     public static final String BASE_URL = "https://18.222.253.58:3009/api/";
     //    public static final String BASE_URL = "https://13.58.210.186:3009/api/";
     public static final String DEVICE_BELT_SETTINGS_URL = "https://18.222.253.58:3009/#!/deviceBeltSetting";
+    public static final String DASHBOARD_URL = "https://52.15.158.101:3009/dashboard";
     public static final String DEVICE_BELT_ALERT_URL = "https://18.222.253.58:3009/#!/deviceAlertSetting";
 
     /*Temp*/

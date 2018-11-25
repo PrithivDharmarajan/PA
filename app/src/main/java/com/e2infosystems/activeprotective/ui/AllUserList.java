@@ -3,6 +3,7 @@ package com.e2infosystems.activeprotective.ui;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.e2infosystems.activeprotective.output.model.CommonResponse;
 import com.e2infosystems.activeprotective.services.APIRequestHandler;
 import com.e2infosystems.activeprotective.utils.DialogManager;
 import com.e2infosystems.activeprotective.utils.InterfaceBtnCallback;
+import com.e2infosystems.activeprotective.utils.PreferenceUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -120,13 +122,16 @@ public class AllUserList extends BaseActivity {
         } else if (resObj instanceof CommonResponse) {
             CommonResponse assignedResponse = (CommonResponse) resObj;
 
+            DialogManager.getInstance().showInfoPopup(this,assignedResponse.getMessage());
 
-            DialogManager.getInstance().showAlertPopup(this, assignedResponse.getMessage(), new InterfaceBtnCallback() {
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
                 @Override
-                public void onPositiveClick() {
+                public void run() {
                     backScreen();
                 }
-            });
+            }, 1000);
+
         }
 
     }

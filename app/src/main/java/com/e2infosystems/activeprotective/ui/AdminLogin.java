@@ -3,6 +3,7 @@ package com.e2infosystems.activeprotective.ui;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -144,11 +145,19 @@ public class AdminLogin extends BaseActivity {
     public void onRequestSuccess(Object resObj) {
         super.onRequestSuccess(resObj);
         if (resObj instanceof LoginResponse) {
-            LoginResponse loginResponse = (LoginResponse) resObj;
+            final LoginResponse loginResponse = (LoginResponse) resObj;
 
-            PreferenceUtil.storeUserDetails(this, loginResponse);
-//            DialogManager.getInstance().showToast(this, loginResponse.getMessage().isEmpty() ? getString(R.string.logged_in_success) : loginResponse.getMessage());
-            nextScreen(AdminWelcome.class);
+            DialogManager.getInstance().showInfoPopup(this,String.format(getString(R.string.welcome_user),loginResponse.getUser()));
+
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    PreferenceUtil.storeUserDetails(AdminLogin.this, loginResponse);
+                    nextScreen(AdminWelcome.class);
+                }
+            }, 1000);
+
         }
     }
 

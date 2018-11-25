@@ -12,6 +12,7 @@
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/header_end_txt"
             android:layout_toEndOf="@+id/header_start_txt"
+            android:gravity="center"
             android:orientation="vertical">
 
             <TextView
