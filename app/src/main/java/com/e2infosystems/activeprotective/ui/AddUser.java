@@ -3,31 +3,25 @@ package com.e2infosystems.activeprotective.ui;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.e2infosystems.activeprotective.R;
-import com.e2infosystems.activeprotective.input.model.AddBeltEntity;
 import com.e2infosystems.activeprotective.input.model.AddUserEntity;
 import com.e2infosystems.activeprotective.main.BaseActivity;
 import com.e2infosystems.activeprotective.output.model.CommonResponse;
-import com.e2infosystems.activeprotective.output.model.LoginResponse;
+import com.e2infosystems.activeprotective.output.model.AdminLoginResponse;
 import com.e2infosystems.activeprotective.services.APIRequestHandler;
-import com.e2infosystems.activeprotective.utils.AppConstants;
 import com.e2infosystems.activeprotective.utils.DialogManager;
 import com.e2infosystems.activeprotective.utils.InterfaceBtnCallback;
-import com.e2infosystems.activeprotective.utils.InterfaceTwoBtnCallback;
 import com.e2infosystems.activeprotective.utils.PreferenceUtil;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -211,7 +205,7 @@ public class AddUser extends BaseActivity {
             DialogManager.getInstance().showAlertPopup(this, getString(R.string.plz_enter__valid_primary_email), this);
         } else {
 
-            LoginResponse userDetailsEntityRes = PreferenceUtil.getUserDetails(this);
+            AdminLoginResponse userDetailsEntityRes = PreferenceUtil.getAdminDetails(this);
 
             AddUserEntity addUserEntity = new AddUserEntity();
 

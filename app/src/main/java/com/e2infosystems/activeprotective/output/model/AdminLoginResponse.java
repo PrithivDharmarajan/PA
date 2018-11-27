@@ -2,7 +2,7 @@ package com.e2infosystems.activeprotective.output.model;
 
 import java.io.Serializable;
 
-public class LoginResponse implements Serializable {
+public class AdminLoginResponse implements Serializable {
 
     private int status = 0;
     private String user = "";

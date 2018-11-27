@@ -3,7 +3,7 @@ package com.e2infosystems.activeprotective.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.e2infosystems.activeprotective.output.model.LoginResponse;
+import com.e2infosystems.activeprotective.output.model.AdminLoginResponse;
 import com.google.gson.Gson;
 
 
@@ -86,8 +86,8 @@ public class PreferenceUtil {
         return (String) getValueFromPreference(context, STRING_PREFERENCE, key);
     }
 
-    /*Store user details to preference*/
-    public static void storeUserDetails(Context context, LoginResponse userDetailsEntity) {
+    /*Store admin details to preference*/
+    public static void storeAdminDetails(Context context, AdminLoginResponse userDetailsEntity) {
         String userDetailStr = "";
 
         Gson gson = new Gson();
@@ -112,14 +112,14 @@ public class PreferenceUtil {
 
     }
 
-    /*Get user details from preference*/
-    public static LoginResponse getUserDetails(Context context) {
-        LoginResponse userDetailsEntityRes = new LoginResponse();
+    /*Get admin details from preference*/
+    public static AdminLoginResponse getAdminDetails(Context context) {
+        AdminLoginResponse userDetailsEntityRes = new AdminLoginResponse();
 
         String userDetailsStr = getStringPreferenceValue(context, AppConstants.USER_DETAILS);
 
         if (userDetailsStr != null && !userDetailsStr.isEmpty()) {
-            userDetailsEntityRes = new Gson().fromJson(userDetailsStr, LoginResponse.class);
+            userDetailsEntityRes = new Gson().fromJson(userDetailsStr, AdminLoginResponse.class);
         }
 
         return userDetailsEntityRes;

@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
-import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.e2infosystems.activeprotective.R;
@@ -21,7 +20,7 @@ import com.e2infosystems.activeprotective.main.BaseActivity;
 import com.e2infosystems.activeprotective.output.model.BeltItemListEntityRes;
 import com.e2infosystems.activeprotective.output.model.BeltListResponse;
 import com.e2infosystems.activeprotective.output.model.DeleteDeviceResponse;
-import com.e2infosystems.activeprotective.output.model.LoginResponse;
+import com.e2infosystems.activeprotective.output.model.AdminLoginResponse;
 import com.e2infosystems.activeprotective.services.APIRequestHandler;
 import com.e2infosystems.activeprotective.utils.AppConstants;
 import com.e2infosystems.activeprotective.utils.DialogManager;
@@ -176,8 +175,8 @@ public class BeltList extends BaseActivity {
 
                     @Override
                     public void onPositiveClick() {
-                        LoginResponse userDetailsRes = new LoginResponse();
-                        PreferenceUtil.storeUserDetails(BeltList.this, userDetailsRes);
+                        AdminLoginResponse userDetailsRes = new AdminLoginResponse();
+                        PreferenceUtil.storeAdminDetails(BeltList.this, userDetailsRes);
                         previousScreen(AdminLogin.class);
                     }
                 });

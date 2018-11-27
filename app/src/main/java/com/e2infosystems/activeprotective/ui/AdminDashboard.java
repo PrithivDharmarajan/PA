@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.e2infosystems.activeprotective.R;
 import com.e2infosystems.activeprotective.main.BaseActivity;
-import com.e2infosystems.activeprotective.output.model.LoginResponse;
+import com.e2infosystems.activeprotective.output.model.AdminLoginResponse;
 import com.e2infosystems.activeprotective.utils.AppConstants;
 import com.e2infosystems.activeprotective.utils.DialogManager;
 import com.e2infosystems.activeprotective.utils.InterfaceTwoBtnCallback;
@@ -143,7 +143,7 @@ public class AdminDashboard extends BaseActivity {
             super.onPageFinished(view, url);
             DialogManager.getInstance().hideProgress();
 
-            LoginResponse userDetails = PreferenceUtil.getUserDetails(AdminDashboard.this);
+            AdminLoginResponse userDetails = PreferenceUtil.getAdminDetails(AdminDashboard.this);
             String firstKeyNameStr = "userToken";
             String firstKeyValStr = userDetails.getAccessToken();
 

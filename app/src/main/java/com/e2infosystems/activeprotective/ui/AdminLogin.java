@@ -16,7 +16,7 @@ import com.e2infosystems.activeprotective.BuildConfig;
 import com.e2infosystems.activeprotective.R;
 import com.e2infosystems.activeprotective.input.model.LoginEntity;
 import com.e2infosystems.activeprotective.main.BaseActivity;
-import com.e2infosystems.activeprotective.output.model.LoginResponse;
+import com.e2infosystems.activeprotective.output.model.AdminLoginResponse;
 import com.e2infosystems.activeprotective.services.APIRequestHandler;
 import com.e2infosystems.activeprotective.utils.DialogManager;
 import com.e2infosystems.activeprotective.utils.InterfaceBtnCallback;
@@ -144,8 +144,8 @@ public class AdminLogin extends BaseActivity {
     @Override
     public void onRequestSuccess(Object resObj) {
         super.onRequestSuccess(resObj);
-        if (resObj instanceof LoginResponse) {
-            final LoginResponse loginResponse = (LoginResponse) resObj;
+        if (resObj instanceof AdminLoginResponse) {
+            final AdminLoginResponse loginResponse = (AdminLoginResponse) resObj;
 
             DialogManager.getInstance().showInfoPopup(this,String.format(getString(R.string.welcome_user),loginResponse.getUser()));
 
@@ -153,7 +153,7 @@ public class AdminLogin extends BaseActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    PreferenceUtil.storeUserDetails(AdminLogin.this, loginResponse);
+                    PreferenceUtil.storeAdminDetails(AdminLogin.this, loginResponse);
                     nextScreen(AdminWelcome.class);
                 }
             }, 1000);

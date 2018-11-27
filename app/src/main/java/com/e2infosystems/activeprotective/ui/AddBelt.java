@@ -17,7 +17,7 @@ import com.e2infosystems.activeprotective.R;
 import com.e2infosystems.activeprotective.input.model.AddBeltEntity;
 import com.e2infosystems.activeprotective.main.BaseActivity;
 import com.e2infosystems.activeprotective.output.model.CommonResponse;
-import com.e2infosystems.activeprotective.output.model.LoginResponse;
+import com.e2infosystems.activeprotective.output.model.AdminLoginResponse;
 import com.e2infosystems.activeprotective.services.APIRequestHandler;
 import com.e2infosystems.activeprotective.utils.AppConstants;
 import com.e2infosystems.activeprotective.utils.DialogManager;
@@ -220,8 +220,8 @@ public class AddBelt extends BaseActivity {
 
                     @Override
                     public void onPositiveClick() {
-                        LoginResponse userDetailsRes = new LoginResponse();
-                        PreferenceUtil.storeUserDetails(AddBelt.this, userDetailsRes);
+                        AdminLoginResponse userDetailsRes = new AdminLoginResponse();
+                        PreferenceUtil.storeAdminDetails(AddBelt.this, userDetailsRes);
                         previousScreen(AdminLogin.class);
                     }
                 });
@@ -308,7 +308,7 @@ public class AddBelt extends BaseActivity {
 
             ArrayList<AddBeltEntity> addDeviceArrEntityList = new ArrayList<>();
 
-            LoginResponse userDetailsEntityRes = PreferenceUtil.getUserDetails(this);
+            AdminLoginResponse userDetailsEntityRes = PreferenceUtil.getAdminDetails(this);
             AddBeltEntity addDeviceArrFirstEntity = new AddBeltEntity();
             AddBeltEntity addDeviceArrSecondEntity = new AddBeltEntity();
 

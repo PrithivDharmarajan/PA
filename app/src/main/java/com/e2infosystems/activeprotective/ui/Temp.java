@@ -3,25 +3,14 @@ package com.e2infosystems.activeprotective.ui;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.e2infosystems.activeprotective.R;
 import com.e2infosystems.activeprotective.main.BaseActivity;
-import com.e2infosystems.activeprotective.output.model.LoginResponse;
 import com.e2infosystems.activeprotective.utils.AppConstants;
-import com.e2infosystems.activeprotective.utils.DialogManager;
-import com.e2infosystems.activeprotective.utils.InterfaceBtnCallback;
-import com.e2infosystems.activeprotective.utils.InterfaceTwoBtnCallback;
-import com.e2infosystems.activeprotective.utils.PreferenceUtil;
-
-import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

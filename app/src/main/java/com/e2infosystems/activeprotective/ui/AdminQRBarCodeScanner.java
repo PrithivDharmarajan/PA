@@ -24,7 +24,7 @@ import com.e2infosystems.activeprotective.R;
 import com.e2infosystems.activeprotective.input.model.AddBeltEntity;
 import com.e2infosystems.activeprotective.main.BaseActivity;
 import com.e2infosystems.activeprotective.output.model.CommonResponse;
-import com.e2infosystems.activeprotective.output.model.LoginResponse;
+import com.e2infosystems.activeprotective.output.model.AdminLoginResponse;
 import com.e2infosystems.activeprotective.services.APIRequestHandler;
 import com.e2infosystems.activeprotective.utils.AppConstants;
 import com.e2infosystems.activeprotective.utils.DialogManager;
@@ -94,7 +94,6 @@ public class AdminQRBarCodeScanner extends BaseActivity {
 
 
     }
-
 
 
     private void initView() {
@@ -207,10 +206,12 @@ public class AdminQRBarCodeScanner extends BaseActivity {
                         public void run() {
                             String scannedFullDataStrArr[] = (barcode.valueAt(0).displayValue).split("!");
 
-                            if (scannedFullDataStrArr[0] != null) {
+                            if (scannedFullDataStrArr[0] != null && !mIsScannedBool) {
                                 String scannedDataStrArr[] = scannedFullDataStrArr[0].split(";");
 
-                                if (scannedDataStrArr.length == 6) {
+                                if (scannedDataStrArr.length == 6 && !scannedDataStrArr[0].isEmpty() && scannedDataStrArr[0].length() == 7 && !scannedDataStrArr[1].isEmpty()
+                                        && !scannedDataStrArr[2].isEmpty() && !scannedDataStrArr[3].isEmpty()
+                                        && !scannedDataStrArr[4].isEmpty() && !scannedDataStrArr[5].isEmpty() && !mIsScannedBool) {
                                     mIsScannedBool = true;
                                     AppConstants.BELT_DETAILS = new AddBeltEntity();
                                     AppConstants.BELT_DETAILS.setDeviceId(scannedDataStrArr[0] != null ? scannedDataStrArr[0] : "");
@@ -220,13 +221,12 @@ public class AdminQRBarCodeScanner extends BaseActivity {
                                     AppConstants.BELT_DETAILS.setDevSize(scannedDataStrArr[4] != null ? scannedDataStrArr[4] : "");
                                     AppConstants.BELT_DETAILS.setDevModal(scannedDataStrArr[5] != null ? scannedDataStrArr[5] : "");
                                     addDeviceAPICall();
-                                } else {
+                                } else if (!mIsScannedBool) {
                                     QRErrorColor();
                                 }
-                            } else {
+                            } else if (!mIsScannedBool) {
                                 QRErrorColor();
                             }
-
 
                         }
                     });
@@ -277,7 +277,7 @@ public class AdminQRBarCodeScanner extends BaseActivity {
 
                 ArrayList<AddBeltEntity> addDeviceArrEntityList = new ArrayList<>();
 
-                LoginResponse userDetailsEntityRes = PreferenceUtil.getUserDetails(AdminQRBarCodeScanner.this);
+                AdminLoginResponse userDetailsEntityRes = PreferenceUtil.getAdminDetails(AdminQRBarCodeScanner.this);
                 AddBeltEntity addDeviceArrFirstEntity = new AddBeltEntity();
 //                AddBeltEntity addDeviceArrSecondEntity = new AddBeltEntity();
 

@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class AddUserEntity {
 
-
     private String communityId = "";
     private String accountId = "";
     private String communityName = "";

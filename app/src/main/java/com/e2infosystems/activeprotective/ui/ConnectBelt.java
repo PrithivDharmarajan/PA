@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
@@ -33,6 +32,8 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static android.net.wifi.p2p.WifiP2pManager.EXTRA_NETWORK_INFO;
 
 
 public class ConnectBelt extends BaseActivity {
@@ -119,7 +120,105 @@ public class ConnectBelt extends BaseActivity {
         }
     }
 
+//    public void connectToWifir(final String SSIDStr, final String passwordStr) {
+//        WifiConfiguration wifiConfiguration = new WifiConfiguration();
+//        final WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+//        boolean wifiEnabled = Objects.requireNonNull(wifiManager).isWifiEnabled();
+//        if (!wifiEnabled) {
+//            wifiManager.setWifiEnabled(true);
+//        }
+//        wifiConfiguration.SSID = String.format("\"%s\"", SSIDStr);
+//        wifiConfiguration.preSharedKey = String.format("\"%s\"", passwordStr);
+//
+//        int netId = wifiManager.addNetwork(wifiConfiguration);
+//        wifiManager.disconnect();
+//        mBroadcastReceiver = new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//
+//                        ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//                        NetworkInfo networkInfo = Objects.requireNonNull(connManager).getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+//
+//                        if (networkInfo.isConnected()) {
+//                            String connectedWifiSSIDStr = wifiManager.getConnectionInfo().getSSID().replaceAll("\"", "");
+//
+//                            sysOut("AppConstants.BELT_DETAILS.getDevSSID()---" + AppConstants.BELT_DETAILS.getDevSSID());
+//                            sysOut("connectedWifiSSIDStr---" + connectedWifiSSIDStr);
+//                            if (!mIsCorrectWifiBool && !mIsFailedPopupShowBool) {
+//                                if (AppConstants.BELT_DETAILS.getDevSSID().matches(connectedWifiSSIDStr)) {
+//                                    mIsCorrectWifiBool = true;
+//                                    nextScreen(NetworkSetup.class);
+//                                } else {
+//                                    wifiErrorPopup(SSIDStr, passwordStr);
+//                                }
+//                            }
+//                        } else if (!mIsCorrectWifiBool && !mIsFailedPopupShowBool) {
+//                            wifiErrorPopup(SSIDStr, passwordStr);
+//                        }
+//
+//                    }
+//                });
+//
+//
+//            }
+//        };
+//        wifiManager.enableNetwork(netId, true);
+//        registerReceiver(mBroadcastReceiver, new IntentFilter(WifiManager.NETWORK_STATE_CHANGED_ACTION));
+//        wifiManager.reconnect();
+//
+//    }
+
+//    public void connectToWifi(final String SSIDStr, final String passwordStr) {
+//
+//        WifiConfiguration wifiConfiguration = new WifiConfiguration();
+//        final WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+//        boolean wifiEnabled = Objects.requireNonNull(wifiManager).isWifiEnabled();
+//        if (!wifiEnabled) {
+//            wifiManager.setWifiEnabled(true);
+//        }
+//        wifiConfiguration.SSID = String.format("\"%s\"", SSIDStr);
+//        wifiConfiguration.preSharedKey = String.format("\"%s\"", passwordStr);
+//
+//        int netId = wifiManager.addNetwork(wifiConfiguration);
+//        mBroadcastReceiver = new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//
+//                ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//                NetworkInfo networkInfo = Objects.requireNonNull(connManager).getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+//
+//                if (networkInfo.isConnected()) {
+//                    if (!mIsCorrectWifiBool && !mIsFailedPopupShowBool) {
+//
+//                        String ssid = wifiManager.getConnectionInfo().getSSID().substring(1,wifiManager.getConnectionInfo().getSSID().length()-1);
+//
+//                        if (ssid.equals(SSIDStr)){
+//                            mIsCorrectWifiBool = true;
+//                            nextScreen(NetworkSetup.class);
+//                        } else {
+//                            wifiErrorPopup(SSIDStr, passwordStr);
+//                        }
+//                    }
+//                }else if (!mIsCorrectWifiBool && !mIsFailedPopupShowBool) {
+//                    wifiErrorPopup(SSIDStr, passwordStr);
+//                }
+//
+//            }
+//        };
+//
+//        wifiManager.enableNetwork(netId, true);
+//        registerReceiver(mBroadcastReceiver, new IntentFilter(WifiManager.NETWORK_STATE_CHANGED_ACTION));
+//        wifiManager.reconnect();
+//
+//
+//    }
+
     public void connectToWifi(final String SSIDStr, final String passwordStr) {
+
+
         WifiConfiguration wifiConfiguration = new WifiConfiguration();
         final WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         boolean wifiEnabled = Objects.requireNonNull(wifiManager).isWifiEnabled();
@@ -130,45 +229,39 @@ public class ConnectBelt extends BaseActivity {
         wifiConfiguration.preSharedKey = String.format("\"%s\"", passwordStr);
 
         int netId = wifiManager.addNetwork(wifiConfiguration);
-        wifiManager.disconnect();
         mBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
 
-                        ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                        NetworkInfo networkInfo = Objects.requireNonNull(connManager).getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+                NetworkInfo networkInfo = intent.getParcelableExtra(EXTRA_NETWORK_INFO);
 
-                        if (networkInfo.isConnected()) {
-                            String connectedWifiSSIDStr = wifiManager.getConnectionInfo().getSSID().replaceAll("\"", "");
 
-                            sysOut("AppConstants.BELT_DETAILS.getDevSSID()---" + AppConstants.BELT_DETAILS.getDevSSID());
-                            sysOut("connectedWifiSSIDStr---" + connectedWifiSSIDStr);
-                            if (!mIsCorrectWifiBool && !mIsFailedPopupShowBool) {
-                                if (AppConstants.BELT_DETAILS.getDevSSID().matches(connectedWifiSSIDStr)) {
-                                    mIsCorrectWifiBool = true;
-                                    nextScreen(NetworkSetup.class);
-                                } else {
-                                    wifiErrorPopup(SSIDStr, passwordStr);
-                                }
-                            }
-                        } else if (!mIsCorrectWifiBool && !mIsFailedPopupShowBool) {
+                if (networkInfo.isConnected()) {
+                    if (!mIsCorrectWifiBool && !mIsFailedPopupShowBool) {
+
+                        String ssid = wifiManager.getConnectionInfo().getSSID().substring(1,wifiManager.getConnectionInfo().getSSID().length()-1);
+
+                        if (ssid.equals(SSIDStr)){
+                            mIsCorrectWifiBool = true;
+                            nextScreen(NetworkSetup.class);
+                        } else {
                             wifiErrorPopup(SSIDStr, passwordStr);
                         }
-
                     }
-                });
-
+                }else if (!mIsCorrectWifiBool && !mIsFailedPopupShowBool) {
+                    wifiErrorPopup(SSIDStr, passwordStr);
+                }
 
             }
         };
+
         wifiManager.enableNetwork(netId, true);
         registerReceiver(mBroadcastReceiver, new IntentFilter(WifiManager.NETWORK_STATE_CHANGED_ACTION));
         wifiManager.reconnect();
 
+
     }
+
 
 
     private void wifiErrorPopup(final String SSIDStr, final String passwordStr) {
@@ -242,6 +335,10 @@ public class ConnectBelt extends BaseActivity {
         if (mBroadcastReceiver != null)
             LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver);
     }
+
+
+
+
 
     @Override
     public void onBackPressed() {

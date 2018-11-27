@@ -4,17 +4,13 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.SslErrorHandler;
-import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -23,17 +19,14 @@ import android.widget.TextView;
 
 import com.e2infosystems.activeprotective.R;
 import com.e2infosystems.activeprotective.main.BaseActivity;
-import com.e2infosystems.activeprotective.output.model.LoginResponse;
+import com.e2infosystems.activeprotective.output.model.AdminLoginResponse;
 import com.e2infosystems.activeprotective.utils.AppConstants;
 import com.e2infosystems.activeprotective.utils.DialogManager;
 import com.e2infosystems.activeprotective.utils.InterfaceTwoBtnCallback;
 import com.e2infosystems.activeprotective.utils.PreferenceUtil;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -146,7 +139,7 @@ public class WebURL extends BaseActivity {
             mWebView.setVisibility(View.VISIBLE);
             DialogManager.getInstance().hideProgress();
 
-            LoginResponse userDetails = PreferenceUtil.getUserDetails(WebURL.this);
+            AdminLoginResponse userDetails = PreferenceUtil.getAdminDetails(WebURL.this);
             String firstKeyNameStr = "userToken";
             String firstKeyValStr = userDetails.getAccessToken();
 

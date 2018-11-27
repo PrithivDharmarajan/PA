@@ -19,14 +19,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.e2infosystems.activeprotective.R;
-import com.e2infosystems.activeprotective.input.model.AddBeltEntity;
 import com.e2infosystems.activeprotective.main.BaseActivity;
 import com.e2infosystems.activeprotective.output.model.CommonResponse;
-import com.e2infosystems.activeprotective.output.model.LoginResponse;
-import com.e2infosystems.activeprotective.services.APIRequestHandler;
 import com.e2infosystems.activeprotective.utils.AppConstants;
 import com.e2infosystems.activeprotective.utils.DialogManager;
 import com.e2infosystems.activeprotective.utils.InterfaceBtnCallback;
@@ -214,21 +210,22 @@ public class UserQRBarcodeScanner extends BaseActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            String scannedFullDataStrArr[] = (barcode.valueAt(0).displayValue).split("!");
+                            {
+                                String scannedFullDataStrArr[] = (barcode.valueAt(0).displayValue).split("!");
 
-                            if (scannedFullDataStrArr.length > 0) {
-                                String scannedDataStrArr[] = scannedFullDataStrArr[0].split(";");
+                                if (scannedFullDataStrArr[0] != null && !mIsScannedBool) {
+                                    String scannedDataStrArr[] = scannedFullDataStrArr[0].split(";");
 
-                                if (scannedDataStrArr.length > 0) {
-                                    mIsScannedBool = true;
-                                    addDeviceAPICall();
-                                } else {
-                                    mIsScannedBool = false;
-                                    changeQRColor();
+                                    if (scannedDataStrArr.length == 1 && !scannedDataStrArr[0].isEmpty() && scannedDataStrArr[0].length() == 7 && !mIsScannedBool) {
+                                        mIsScannedBool = true;
+                                        addDeviceAPICall();
+                                    } else if (!mIsScannedBool) {
+                                        QRErrorColor();
+                                    }
+                                } else if (!mIsScannedBool) {
+                                    QRErrorColor();
                                 }
-                            } else {
-                                mIsScannedBool = false;
-                                changeQRColor();
+
                             }
 
 
@@ -239,6 +236,28 @@ public class UserQRBarcodeScanner extends BaseActivity {
                 }
             }
         });
+    }
+
+
+    private void QRErrorColor() {
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mQRImg.setColorFilter(getResources().getColor(R.color.red));
+                mRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        mIsScannedBool = false;
+                        mQRImg.setColorFilter(getResources().getColor(R.color.blue));
+                    }
+                };
+
+                mHandler = new Handler();
+                mHandler.postDelayed(mRunnable, 1500);
+            }
+        });
+
     }
 
     private void changeQRColor() {

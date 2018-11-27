@@ -10,13 +10,15 @@ import com.e2infosystems.activeprotective.input.model.DeleteDeviceEntity;
 import com.e2infosystems.activeprotective.input.model.FetchDeviceEntity;
 import com.e2infosystems.activeprotective.input.model.LoginEntity;
 import com.e2infosystems.activeprotective.input.model.AssignUnAssignBeltEntity;
+import com.e2infosystems.activeprotective.input.model.UpdateWifiStatusEntity;
 import com.e2infosystems.activeprotective.main.BaseActivity;
 import com.e2infosystems.activeprotective.output.model.AllUserListResponse;
 import com.e2infosystems.activeprotective.output.model.BeltListResponse;
 import com.e2infosystems.activeprotective.output.model.CommonResponse;
 import com.e2infosystems.activeprotective.output.model.DeleteDeviceResponse;
 import com.e2infosystems.activeprotective.output.model.ErrorResponse;
-import com.e2infosystems.activeprotective.output.model.LoginResponse;
+import com.e2infosystems.activeprotective.output.model.AdminLoginResponse;
+import com.e2infosystems.activeprotective.output.model.UserLoginResponse;
 import com.e2infosystems.activeprotective.utils.AppConstants;
 import com.e2infosystems.activeprotective.utils.DialogManager;
 import com.e2infosystems.activeprotective.utils.PreferenceUtil;
@@ -108,9 +110,9 @@ public class APIRequestHandler {
     /*Login API*/
     public void loginAPICall(LoginEntity loginEntity, final BaseActivity baseActivity) {
         DialogManager.getInstance().showProgress(baseActivity);
-        mServiceInterface.loginAPI(loginEntity).enqueue(new Callback<LoginResponse>() {
+        mServiceInterface.loginAPI(loginEntity).enqueue(new Callback<AdminLoginResponse>() {
             @Override
-            public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
+            public void onResponse(@NonNull Call<AdminLoginResponse> call, @NonNull Response<AdminLoginResponse> response) {
                 DialogManager.getInstance().hideProgress();
                 if (response.isSuccessful() && response.body() != null) {
                     baseActivity.onRequestSuccess(response.body());
@@ -122,14 +124,14 @@ public class APIRequestHandler {
                     } catch (IOException | JsonParseException e) {
                         e.printStackTrace();
                     }
-                    baseActivity.onRequestFailure(new LoginResponse(), new Throwable(errorMsgStr));
+                    baseActivity.onRequestFailure(new AdminLoginResponse(), new Throwable(errorMsgStr));
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<AdminLoginResponse> call, @NonNull Throwable t) {
                 DialogManager.getInstance().hideProgress();
-                baseActivity.onRequestFailure(new LoginResponse(), t);
+                baseActivity.onRequestFailure(new AdminLoginResponse(), t);
             }
         });
     }
@@ -366,6 +368,64 @@ public class APIRequestHandler {
             public void onFailure(@NonNull Call<CommonResponse> call, @NonNull Throwable t) {
                 DialogManager.getInstance().hideProgress();
                 baseActivity.onRequestFailure(new CommonResponse(), t);
+            }
+        });
+    }
+
+    /*updateWifiStatusAPICall */
+    public void updateWifiStatusAPICall(UpdateWifiStatusEntity updateWifiStatusEntity, final BaseActivity baseActivity) {
+        DialogManager.getInstance().showProgress(baseActivity);
+        mServiceInterface.updateWifiStatusAPI(PreferenceUtil.getAuthorizationToken(baseActivity), PreferenceUtil.getUserName(baseActivity), updateWifiStatusEntity).enqueue(new Callback<CommonResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<CommonResponse> call, @NonNull Response<CommonResponse> response) {
+                DialogManager.getInstance().hideProgress();
+                if (response.isSuccessful() && response.body() != null) {
+                    baseActivity.onRequestSuccess(response.body());
+                } else {
+                    String errorMsgStr = response.raw().message();
+                    try {
+                        ErrorResponse errorBodyRes = new Gson().fromJson(Objects.requireNonNull(response.errorBody()).string(), ErrorResponse.class);
+                        errorMsgStr = errorBodyRes.getErrorMessage().isEmpty() ? errorMsgStr : errorBodyRes.getErrorMessage();
+                    } catch (IOException | JsonParseException e) {
+                        e.printStackTrace();
+                    }
+                    baseActivity.onRequestFailure(new CommonResponse(), new Throwable(errorMsgStr));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CommonResponse> call, @NonNull Throwable t) {
+                DialogManager.getInstance().hideProgress();
+                baseActivity.onRequestFailure(new CommonResponse(), t);
+            }
+        });
+    }
+
+    /*Wearer Login */
+    public void userWearerLoginAPICall(FetchDeviceEntity deviceIDResponse, final BaseActivity baseActivity) {
+        DialogManager.getInstance().showProgress(baseActivity);
+        mServiceInterface.userWearerLoginAPI(PreferenceUtil.getAuthorizationToken(baseActivity), PreferenceUtil.getUserName(baseActivity), deviceIDResponse).enqueue(new Callback<UserLoginResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<UserLoginResponse> call, @NonNull Response<UserLoginResponse> response) {
+                DialogManager.getInstance().hideProgress();
+                if (response.isSuccessful() && response.body() != null) {
+                    baseActivity.onRequestSuccess(response.body());
+                } else {
+                    String errorMsgStr = response.raw().message();
+                    try {
+                        ErrorResponse errorBodyRes = new Gson().fromJson(Objects.requireNonNull(response.errorBody()).string(), ErrorResponse.class);
+                        errorMsgStr = errorBodyRes.getErrorMessage().isEmpty() ? errorMsgStr : errorBodyRes.getErrorMessage();
+                    } catch (IOException | JsonParseException e) {
+                        e.printStackTrace();
+                    }
+                    baseActivity.onRequestFailure(new UserLoginResponse(), new Throwable(errorMsgStr));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<UserLoginResponse> call, @NonNull Throwable t) {
+                DialogManager.getInstance().hideProgress();
+                baseActivity.onRequestFailure(new UserLoginResponse(), t);
             }
         });
     }

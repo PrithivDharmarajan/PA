@@ -19,6 +19,8 @@ public class AllUserItemListEntityRes implements Serializable {
     private String secNumber = "0";
     private String title = "0";
 
+
+
     public long getCreatedEpochMs() {
         return createdEpochMs;
     }

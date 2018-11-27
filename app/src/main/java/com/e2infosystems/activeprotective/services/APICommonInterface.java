@@ -6,11 +6,13 @@ import com.e2infosystems.activeprotective.input.model.DeleteDeviceEntity;
 import com.e2infosystems.activeprotective.input.model.FetchDeviceEntity;
 import com.e2infosystems.activeprotective.input.model.LoginEntity;
 import com.e2infosystems.activeprotective.input.model.AssignUnAssignBeltEntity;
+import com.e2infosystems.activeprotective.input.model.UpdateWifiStatusEntity;
 import com.e2infosystems.activeprotective.output.model.AllUserListResponse;
 import com.e2infosystems.activeprotective.output.model.BeltListResponse;
 import com.e2infosystems.activeprotective.output.model.CommonResponse;
 import com.e2infosystems.activeprotective.output.model.DeleteDeviceResponse;
-import com.e2infosystems.activeprotective.output.model.LoginResponse;
+import com.e2infosystems.activeprotective.output.model.AdminLoginResponse;
+import com.e2infosystems.activeprotective.output.model.UserLoginResponse;
 
 import java.util.ArrayList;
 
@@ -25,7 +27,7 @@ public interface APICommonInterface {
 
     /*Login API*/
     @POST("v1/user/login")
-    Call<LoginResponse> loginAPI(@Body LoginEntity loginEntity);
+    Call<AdminLoginResponse> loginAPI(@Body LoginEntity loginEntity);
 
     /*Belt List API*/
     @FormUrlEncoded
@@ -60,5 +62,13 @@ public interface APICommonInterface {
     /*Add userAPI*/
     @POST("userDetails/addUser")
     Call<CommonResponse> addUserAPI(@Header("Authorization") String authorizationStr, @Header("username") String usernameStr, @Body AddUserEntity addUserEntity);
+
+    /*updateWifiStatus login*/
+    @POST("devManagement/updateWifiStatus")
+    Call<CommonResponse> updateWifiStatusAPI(@Header("Authorization") String authorizationStr, @Header("username") String usernameStr, @Body UpdateWifiStatusEntity updateWifiStatusEntity);
+
+    /*User login*/
+    @POST("userDetails/wearerLogin")
+    Call<UserLoginResponse> userWearerLoginAPI(@Header("Authorization") String authorizationStr, @Header("username") String usernameStr, @Body FetchDeviceEntity updateWifiStatusEntity);
 
 }

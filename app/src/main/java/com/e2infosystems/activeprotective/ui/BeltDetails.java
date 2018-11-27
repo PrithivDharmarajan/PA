@@ -22,7 +22,7 @@ import com.e2infosystems.activeprotective.main.BaseActivity;
 import com.e2infosystems.activeprotective.output.model.BeltItemListEntityRes;
 import com.e2infosystems.activeprotective.output.model.BeltListResponse;
 import com.e2infosystems.activeprotective.output.model.CommonResponse;
-import com.e2infosystems.activeprotective.output.model.LoginResponse;
+import com.e2infosystems.activeprotective.output.model.AdminLoginResponse;
 import com.e2infosystems.activeprotective.services.APIRequestHandler;
 import com.e2infosystems.activeprotective.utils.AppConstants;
 import com.e2infosystems.activeprotective.utils.DialogManager;
@@ -318,8 +318,8 @@ public class BeltDetails extends BaseActivity {
 
                     @Override
                     public void onPositiveClick() {
-                        LoginResponse userDetailsRes = new LoginResponse();
-                        PreferenceUtil.storeUserDetails(BeltDetails.this, userDetailsRes);
+                        AdminLoginResponse userDetailsRes = new AdminLoginResponse();
+                        PreferenceUtil.storeAdminDetails(BeltDetails.this, userDetailsRes);
                         previousScreen(AdminLogin.class);
                     }
                 });
