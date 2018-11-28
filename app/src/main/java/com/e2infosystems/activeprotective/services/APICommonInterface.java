@@ -20,8 +20,11 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface APICommonInterface {
 
@@ -63,12 +66,16 @@ public interface APICommonInterface {
     @POST("userDetails/addUser")
     Call<CommonResponse> addUserAPI(@Header("Authorization") String authorizationStr, @Header("username") String usernameStr, @Body AddUserEntity addUserEntity);
 
+    /*Network Setup API*/
+    @GET
+    Call<String> networkSetupAPI(@Url String authorizationStr, @Query("ssid") String usernameStr, @Query("pwd") String pwdStr);
+
     /*updateWifiStatus login*/
     @POST("devManagement/updateWifiStatus")
     Call<CommonResponse> updateWifiStatusAPI(@Header("Authorization") String authorizationStr, @Header("username") String usernameStr, @Body UpdateWifiStatusEntity updateWifiStatusEntity);
 
     /*User login*/
     @POST("userDetails/wearerLogin")
-    Call<UserLoginResponse> userWearerLoginAPI(@Header("Authorization") String authorizationStr, @Header("username") String usernameStr, @Body FetchDeviceEntity updateWifiStatusEntity);
+    Call<UserLoginResponse> userWearerLoginAPI(@Body FetchDeviceEntity updateWifiStatusEntity);
 
 }

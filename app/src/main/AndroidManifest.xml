@@ -54,10 +54,6 @@
             android:configChanges="keyboardHidden|orientation|screenSize" />
 
         <activity
-            android:name=".ui.AdminWelcome"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
-        <activity
             android:name=".ui.BeltList"
             android:configChanges="keyboardHidden|orientation|screenSize" />
 
@@ -116,7 +112,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize" />
 
         <activity
-            android:name=".ui.TempUser"
+            android:name=".ui.AddUserBelt"
             android:configChanges="keyboardHidden|orientation|screenSize" />
 
         <!--Google vision plugin-->

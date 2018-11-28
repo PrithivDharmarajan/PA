@@ -40,10 +40,11 @@
                     android:layout_marginTop="@dimen/size3"
                     android:background="@drawable/blue_white_bg"
                     android:hint="@string/enter_ssid"
+
                     android:imeOptions="actionNext|flagNoExtractUi"
-                    android:inputType="text|numberSigned"
-                    android:maxLength="32"
+                    android:inputType="text"
                     android:maxLines="1"
+                    android:maxLength="32"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray"
                     tools:ignore="Autofill" />

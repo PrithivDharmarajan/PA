@@ -195,7 +195,6 @@
                     android:imeOptions="actionDone|flagNoExtractUi"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:maxLength="25"
                     android:paddingStart="@dimen/size5"
                     android:paddingEnd="@dimen/size15"
                     android:textColor="@color/black"

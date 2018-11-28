@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.e2infosystems.activeprotective.output.model.AdminLoginResponse;
+import com.e2infosystems.activeprotective.output.model.UserLoginDetailsEntityRes;
 import com.google.gson.Gson;
 
 
@@ -112,6 +113,20 @@ public class PreferenceUtil {
 
     }
 
+    /*Store admin details to preference*/
+    public static void storeUserDetails(Context context, UserLoginDetailsEntityRes userDetailsEntity) {
+        String userDetailStr = "";
+
+        Gson gson = new Gson();
+        userDetailStr = gson.toJson(userDetailsEntity);
+
+        /*Store user details*/
+        storeValueToPreference(context, PreferenceUtil.STRING_PREFERENCE,
+                AppConstants.USER_DETAILS, userDetailStr);
+
+
+    }
+
     /*Get admin details from preference*/
     public static AdminLoginResponse getAdminDetails(Context context) {
         AdminLoginResponse userDetailsEntityRes = new AdminLoginResponse();
@@ -120,6 +135,19 @@ public class PreferenceUtil {
 
         if (userDetailsStr != null && !userDetailsStr.isEmpty()) {
             userDetailsEntityRes = new Gson().fromJson(userDetailsStr, AdminLoginResponse.class);
+        }
+
+        return userDetailsEntityRes;
+    }
+
+    /*Get user details from preference*/
+    public static UserLoginDetailsEntityRes getUserDetails(Context context) {
+        UserLoginDetailsEntityRes userDetailsEntityRes = new UserLoginDetailsEntityRes();
+
+        String userDetailsStr = getStringPreferenceValue(context, AppConstants.USER_DETAILS);
+
+        if (userDetailsStr != null && !userDetailsStr.isEmpty()) {
+            userDetailsEntityRes = new Gson().fromJson(userDetailsStr, UserLoginDetailsEntityRes.class);
         }
 
         return userDetailsEntityRes;

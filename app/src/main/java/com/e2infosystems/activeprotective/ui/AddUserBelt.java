@@ -12,8 +12,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.e2infosystems.activeprotective.R;
+import com.e2infosystems.activeprotective.input.model.FetchDeviceEntity;
 import com.e2infosystems.activeprotective.main.BaseActivity;
-import com.e2infosystems.activeprotective.output.model.CommonResponse;
+import com.e2infosystems.activeprotective.output.model.UserLoginResponse;
+import com.e2infosystems.activeprotective.services.APIRequestHandler;
 import com.e2infosystems.activeprotective.utils.AppConstants;
 import com.e2infosystems.activeprotective.utils.DialogManager;
 import com.e2infosystems.activeprotective.utils.InterfaceBtnCallback;
@@ -26,7 +28,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class TempUser extends BaseActivity {
+public class AddUserBelt extends BaseActivity {
 
     @BindView(R.id.add_belt_parent_lay)
     ViewGroup mAddBeltViewGroup;
@@ -48,7 +50,7 @@ public class TempUser extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ui_temp_user);
+        setContentView(R.layout.ui_add_user_belt);
         initView();
     }
 
@@ -97,7 +99,7 @@ public class TempUser extends BaseActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mHeaderLay.setPadding(0, getStatusBarHeight(TempUser.this), 0, 0);
+                            mHeaderLay.setPadding(0, getStatusBarHeight(AddUserBelt.this), 0, 0);
                         }
                     });
                 }
@@ -130,9 +132,17 @@ public class TempUser extends BaseActivity {
         if (serialNumberStr.isEmpty()) {
             mSerialNumberEdt.requestFocus();
             DialogManager.getInstance().showAlertPopup(this, getString(R.string.plz_enter_serial_number), this);
-        } else {
-            PreferenceUtil.storeBoolPreferenceValue(this, AppConstants.LOGIN_STATUS, true);
-            nextScreen(UserDashboard.class);
+        } else if (serialNumberStr.length()< 8) {
+            mSerialNumberEdt.requestFocus();
+            DialogManager.getInstance().showAlertPopup(this, getString(R.string.serial_contains_eight_char), this);
+        } else{
+
+
+            FetchDeviceEntity userLoginEntity = new FetchDeviceEntity();
+            userLoginEntity.setDeviceId(serialNumberStr);
+            APIRequestHandler.getInstance().userWearerLoginAPICall(userLoginEntity,this);
+
+
         }
     }
 
@@ -141,8 +151,13 @@ public class TempUser extends BaseActivity {
     @Override
     public void onRequestSuccess(Object resObj) {
         super.onRequestSuccess(resObj);
-        if (resObj instanceof CommonResponse) {
-            nextScreen(BeltDetails.class);
+        if (resObj instanceof UserLoginResponse) {
+            UserLoginResponse userLoginResponse = (UserLoginResponse) resObj;
+            if(userLoginResponse.getData().getItems().size()>0){
+                PreferenceUtil.storeUserDetails(this,userLoginResponse.getData().getItems().get(0));
+                PreferenceUtil.storeBoolPreferenceValue(this, AppConstants.LOGIN_STATUS, true);
+                nextScreen(UserDashboard.class);
+            }
         }
     }
 

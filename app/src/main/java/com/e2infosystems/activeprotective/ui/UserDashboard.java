@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.e2infosystems.activeprotective.R;
 import com.e2infosystems.activeprotective.main.BaseActivity;
 import com.e2infosystems.activeprotective.output.model.AdminLoginResponse;
+import com.e2infosystems.activeprotective.output.model.UserLoginDetailsEntityRes;
 import com.e2infosystems.activeprotective.utils.AppConstants;
 import com.e2infosystems.activeprotective.utils.DialogManager;
 import com.e2infosystems.activeprotective.utils.InterfaceTwoBtnCallback;
@@ -79,7 +80,7 @@ public class UserDashboard extends BaseActivity {
 
         setHeaderAdjustmentView();
         setFooterView();
-        mWebURLStr=AppConstants.DASHBOARD_URL;
+        mWebURLStr=AppConstants.DASHBOARD_USER_URL;
         if(askPermissions()){
             webURLLoad();
         }
@@ -171,24 +172,27 @@ public class UserDashboard extends BaseActivity {
             super.onPageFinished(view, url);
             DialogManager.getInstance().hideProgress();
 
-            AdminLoginResponse userDetails = PreferenceUtil.getAdminDetails(UserDashboard.this);
-            String firstKeyNameStr = "userToken";
-            String firstKeyValStr = userDetails.getAccessToken();
+            UserLoginDetailsEntityRes userDetails = PreferenceUtil.getUserDetails(UserDashboard.this);
 
-            String secondKeyNameStr = "accountId";
-            String secondKeyValStr = userDetails.getAccountId();
+            String firstKeyNameStr = "accountId";
+            String firstKeyValStr = userDetails.getAccountId();
 
-            String thirdKeyNameStr = "userName";
-            String thirdKeyValStr = userDetails.getUserName();
+            String secondKeyNameStr = "communityId";
+            String secondKeyValStr = userDetails.getCommunityId();
 
-            String fourthKeyNameStr = "deviceId";
-            String fourthKeyValStr = AppConstants.BELT_DEVICE_ID;
+            String thirdKeyNameStr = "communityName";
+            String thirdKeyValStr = userDetails.getCommunityName();
 
-            String fifthKeyNameStr = "communityName";
-            String fifthKeyValStr = userDetails.getCommunityName();
+            String fourthKeyNameStr = "userId";
+            String fourthKeyValStr = userDetails.getUserId();
 
-            String sixthKeyNameStr = "communityId";
-            String sixthKeyValStr = userDetails.getCommunityId();
+            String fifthKeyNameStr = "FullName";
+            String fifthKeyValStr = userDetails.getFirstName()+ " "+userDetails.getLastName();
+
+            String sixthKeyNameStr = "deviceId";
+            String sixthKeyValStr = userDetails.getDeviceId();
+
+
 
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
                 mWebView.evaluateJavascript("localStorage.setItem('" + firstKeyNameStr + "','" + firstKeyValStr + "');" +

@@ -71,7 +71,7 @@ public class AdminDashboard extends BaseActivity {
 
         setHeaderAdjustmentView();
 
-        mWebURLStr=AppConstants.DASHBOARD_URL;
+        mWebURLStr=AppConstants.DASHBOARD_ADMIN_URL;
         if(askPermissions()){
             webURLLoad();
         }

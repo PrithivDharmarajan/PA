@@ -21,8 +21,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.e2infosystems.activeprotective.R;
+import com.e2infosystems.activeprotective.input.model.FetchDeviceEntity;
 import com.e2infosystems.activeprotective.main.BaseActivity;
-import com.e2infosystems.activeprotective.output.model.CommonResponse;
+import com.e2infosystems.activeprotective.output.model.UserLoginResponse;
+import com.e2infosystems.activeprotective.services.APIRequestHandler;
 import com.e2infosystems.activeprotective.utils.AppConstants;
 import com.e2infosystems.activeprotective.utils.DialogManager;
 import com.e2infosystems.activeprotective.utils.InterfaceBtnCallback;
@@ -69,7 +71,7 @@ public class UserQRBarcodeScanner extends BaseActivity {
     private Handler mHandler;
     private Runnable mRunnable;
     private boolean mIsScannedBool = false;
-
+    private String mDeviceIDStr = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,7 +154,7 @@ public class UserQRBarcodeScanner extends BaseActivity {
                 onBackPressed();
                 break;
             case R.id.add_manually_btn:
-                nextScreen(TempUser.class);
+                nextScreen(AddUserBelt.class);
                 break;
 
         }
@@ -218,6 +220,7 @@ public class UserQRBarcodeScanner extends BaseActivity {
 
                                     if (scannedDataStrArr.length == 1 && !scannedDataStrArr[0].isEmpty() && scannedDataStrArr[0].length() == 7 && !mIsScannedBool) {
                                         mIsScannedBool = true;
+                                        mDeviceIDStr=scannedDataStrArr[0];
                                         addDeviceAPICall();
                                     } else if (!mIsScannedBool) {
                                         QRErrorColor();
@@ -297,8 +300,11 @@ public class UserQRBarcodeScanner extends BaseActivity {
                     }
                 }
                 mQRImg.setColorFilter(getResources().getColor(R.color.green));
-                PreferenceUtil.storeBoolPreferenceValue(UserQRBarcodeScanner.this, AppConstants.LOGIN_STATUS, true);
-                nextScreen(UserDashboard.class);
+
+                FetchDeviceEntity userLoginEntity = new FetchDeviceEntity();
+                userLoginEntity.setDeviceId(mDeviceIDStr);
+                APIRequestHandler.getInstance().userWearerLoginAPICall(userLoginEntity,UserQRBarcodeScanner.this);
+
 
             }
         });
@@ -339,32 +345,47 @@ public class UserQRBarcodeScanner extends BaseActivity {
         return addPermission;
     }
 
-    /*API request success and failure*/
     @Override
     public void onRequestSuccess(Object resObj) {
         super.onRequestSuccess(resObj);
-        if (resObj instanceof CommonResponse) {
-            nextScreen(BeltDetails.class);
+        if (resObj instanceof UserLoginResponse) {
+            UserLoginResponse userLoginResponse = (UserLoginResponse) resObj;
+            if(userLoginResponse.getData().getItems().size()>0){
+                PreferenceUtil.storeUserDetails(this,userLoginResponse.getData().getItems().get(0));
+                PreferenceUtil.storeBoolPreferenceValue(UserQRBarcodeScanner.this, AppConstants.LOGIN_STATUS, true);
+                nextScreen(UserDashboard.class);
+            }else{
+                QRErrorColor();
+            }
         }
     }
 
     @Override
     public void onRequestFailure(final Object resObj, Throwable t) {
-        super.onRequestFailure(resObj, t);
-        mIsScannedBool = false;
-        changeQRColor();
-        if (t instanceof IOException) {
+        if (t.getMessage() != null && !t.getMessage().isEmpty() && !(t instanceof IOException)) {
+            DialogManager.getInstance().showAlertPopup(this, t.getMessage(), new InterfaceBtnCallback() {
+                @Override
+                public void onPositiveClick() {
+                    QRErrorColor();
+                }
+            });
+        } else if (t instanceof IOException) {
             DialogManager.getInstance().showAlertPopup(this,
                     (t instanceof java.net.ConnectException || t instanceof java.net.UnknownHostException ? getString(R.string.no_internet) : getString(R.string
                             .connect_time_out)), new InterfaceBtnCallback() {
                         @Override
                         public void onPositiveClick() {
+                            QRErrorColor();
                         }
                     });
 
 
+        } else {
+            QRErrorColor();
         }
+
     }
+
 
     private void removeHandler() {
         if (mHandler != null) {

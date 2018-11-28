@@ -61,7 +61,7 @@ public class Splash extends BaseActivity {
                 }
                 nextScreen(nextScreenClass);
 
-//                nextScreen(ConnectBelt.class);
+//                nextScreen(NetworkSetup.class);
             }
         };
         mHandler = new Handler();

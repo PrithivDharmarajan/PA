@@ -3,6 +3,7 @@ package com.e2infosystems.activeprotective.ui;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.e2infosystems.activeprotective.R;
+import com.e2infosystems.activeprotective.input.model.UpdateWifiStatusEntity;
 import com.e2infosystems.activeprotective.main.BaseActivity;
+import com.e2infosystems.activeprotective.output.model.AdminLoginResponse;
+import com.e2infosystems.activeprotective.output.model.AllUserListResponse;
+import com.e2infosystems.activeprotective.output.model.CommonResponse;
+import com.e2infosystems.activeprotective.services.APIRequestHandler;
+import com.e2infosystems.activeprotective.utils.AppConstants;
 import com.e2infosystems.activeprotective.utils.DialogManager;
+import com.e2infosystems.activeprotective.utils.InterfaceBtnCallback;
+import com.e2infosystems.activeprotective.utils.PreferenceUtil;
+
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,7 +65,7 @@ public class NetworkSetup extends BaseActivity {
         /*Keypad to be hidden when a touch made outside the edit text*/
         setupUI(mNetworkViewGroup);
 
-        mHeaderTxt.setText(getString(R.string.connect_to_belt));
+        mHeaderTxt.setText(getString(R.string.network_setup));
         /*Keypad button action*/
         mPasswordEdt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -123,7 +134,47 @@ public class NetworkSetup extends BaseActivity {
             mPasswordEdt.requestFocus();
             DialogManager.getInstance().showAlertPopup(this, getString(R.string.plz_enter_password), this);
         }else {
-           previousScreen(BeltList.class);
+           APIRequestHandler.getInstance().networkSetupAPICall(ssidStr,passwordStr,this);
+
+       }
+    }
+
+
+    /*API request success and failure*/
+    @Override
+    public void onRequestSuccess(Object resObj) {
+        super.onRequestSuccess(resObj);
+        if (resObj instanceof String) {
+            UpdateWifiStatusEntity updateWifiStatusEntity=new UpdateWifiStatusEntity();
+            updateWifiStatusEntity.setDeviceId(AppConstants.BELT_DEVICE_ID);
+            updateWifiStatusEntity.setWiFiConfiguredStatus(1);
+             APIRequestHandler.getInstance().updateWifiStatusAPICall(updateWifiStatusEntity,this);
+        }else  if (resObj instanceof CommonResponse) {
+            CommonResponse updateWifiStatusRes = (CommonResponse) resObj;
+            DialogManager.getInstance().showInfoPopup(this,updateWifiStatusRes.getMessage());
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    previousScreen(BeltList.class);
+                }
+            }, 1000);
+        }
+    }
+
+    @Override
+    public void onRequestFailure(final Object resObj, Throwable t) {
+        super.onRequestFailure(resObj, t);
+        if (t instanceof IOException) {
+            DialogManager.getInstance().showAlertPopup(this,
+                    (t instanceof java.net.ConnectException ? getString(R.string.no_internet) : getString(R.string
+                            .connect_time_out)), new InterfaceBtnCallback() {
+                        @Override
+                        public void onPositiveClick() {
+                        }
+                    });
+
+
         }
     }
 

@@ -372,6 +372,35 @@ public class APIRequestHandler {
         });
     }
 
+    /*Network Setup APICall */
+    public void networkSetupAPICall(String SSIDStr,String pwdStr, final BaseActivity baseActivity) {
+        DialogManager.getInstance().showProgress(baseActivity);
+        mServiceInterface.networkSetupAPI(AppConstants.NETWORK_SETUP_URL,SSIDStr, pwdStr).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                DialogManager.getInstance().hideProgress();
+                if (response.isSuccessful() && response.body() != null) {
+                    baseActivity.onRequestSuccess(response.body());
+                } else {
+                    String errorMsgStr = response.raw().message();
+                    try {
+                        ErrorResponse errorBodyRes = new Gson().fromJson(Objects.requireNonNull(response.errorBody()).string(), ErrorResponse.class);
+                        errorMsgStr = errorBodyRes.getErrorMessage().isEmpty() ? errorMsgStr : errorBodyRes.getErrorMessage();
+                    } catch (IOException | JsonParseException e) {
+                        e.printStackTrace();
+                    }
+                    baseActivity.onRequestFailure("", new Throwable(errorMsgStr));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                DialogManager.getInstance().hideProgress();
+                baseActivity.onRequestFailure("", t);
+            }
+        });
+    }
+
     /*updateWifiStatusAPICall */
     public void updateWifiStatusAPICall(UpdateWifiStatusEntity updateWifiStatusEntity, final BaseActivity baseActivity) {
         DialogManager.getInstance().showProgress(baseActivity);
@@ -404,7 +433,7 @@ public class APIRequestHandler {
     /*Wearer Login */
     public void userWearerLoginAPICall(FetchDeviceEntity deviceIDResponse, final BaseActivity baseActivity) {
         DialogManager.getInstance().showProgress(baseActivity);
-        mServiceInterface.userWearerLoginAPI(PreferenceUtil.getAuthorizationToken(baseActivity), PreferenceUtil.getUserName(baseActivity), deviceIDResponse).enqueue(new Callback<UserLoginResponse>() {
+        mServiceInterface.userWearerLoginAPI(deviceIDResponse).enqueue(new Callback<UserLoginResponse>() {
             @Override
             public void onResponse(@NonNull Call<UserLoginResponse> call, @NonNull Response<UserLoginResponse> response) {
                 DialogManager.getInstance().hideProgress();

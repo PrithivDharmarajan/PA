@@ -366,6 +366,8 @@ public class BeltDetails extends BaseActivity {
             AppConstants.BELT_DETAILS.setDevSize(sizeStr);
             AppConstants.BELT_DETAILS.setDevModal(modelStr);
 
+            sysOut("setDeviceId---"+serialNumberStr);
+
             nextScreen(Instructions.class);
         }
     }

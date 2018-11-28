@@ -154,7 +154,7 @@ public class AdminLogin extends BaseActivity {
                 @Override
                 public void run() {
                     PreferenceUtil.storeAdminDetails(AdminLogin.this, loginResponse);
-                    nextScreen(AdminWelcome.class);
+                    nextScreen(BeltList.class);
                 }
             }, 1000);
 
@@ -180,7 +180,7 @@ public class AdminLogin extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        backScreen();
+        previousScreen(GeneralWelcome.class);
     }
 }
 
