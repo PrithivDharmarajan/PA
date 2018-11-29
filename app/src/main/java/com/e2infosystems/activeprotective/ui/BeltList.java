@@ -210,6 +210,16 @@ public class BeltList extends BaseActivity {
     public void onRequestFailure(final Object resObj, Throwable t) {
         super.onRequestFailure(resObj, t);
         if (t instanceof IOException) {
+            if(resObj instanceof BeltListResponse){
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mNoBeltLay.setVisibility (View.VISIBLE);
+                        mBeltLay.setVisibility( View.GONE);
+                    }
+                });
+            }
+
             DialogManager.getInstance().showAlertPopup(this,
                     (t instanceof java.net.ConnectException || t instanceof java.net.UnknownHostException ? getString(R.string.no_internet) : getString(R.string
                             .connect_time_out)), new InterfaceBtnCallback() {

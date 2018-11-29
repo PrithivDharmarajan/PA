@@ -140,7 +140,7 @@ public class AddBelt extends BaseActivity {
 
     private void setData() {
 
-        AddBeltEntity beltDetailsEntity = AppConstants.BELT_DETAILS;
+        AddBeltEntity beltDetailsEntity = AppConstants.ADD_BELT_DETAILS;
         mSerialNumberEdt.setText(beltDetailsEntity.getDeviceId());
         mSerialNumberEdt.setSelection(beltDetailsEntity.getDeviceId().length());
         mMacAddressEdt.setText(beltDetailsEntity.getDevMAC());
@@ -281,9 +281,9 @@ public class AddBelt extends BaseActivity {
         if (serialNumberStr.isEmpty()) {
             mSerialNumberEdt.requestFocus();
             DialogManager.getInstance().showAlertPopup(this, getString(R.string.plz_enter_serial_number), this);
-        }else if (serialNumberStr.length()< 8) {
+        }else if (serialNumberStr.length()< 9) {
             mSerialNumberEdt.requestFocus();
-            DialogManager.getInstance().showAlertPopup(this, getString(R.string.serial_contains_eight_char), this);
+            DialogManager.getInstance().showAlertPopup(this, getString(R.string.serial_contains_nine_char), this);
         } else if (macAddressStr.isEmpty()) {
             mMacAddressEdt.requestFocus();
             DialogManager.getInstance().showAlertPopup(this, getString(R.string.plz_enter_mac_address), this);
@@ -298,13 +298,13 @@ public class AddBelt extends BaseActivity {
             DialogManager.getInstance().showAlertPopup(this, getString(R.string.plz_enter_model), this);
         } else {
 
-            AppConstants.BELT_DETAILS = new AddBeltEntity();
-            AppConstants.BELT_DETAILS.setDeviceId(serialNumberStr);
-            AppConstants.BELT_DETAILS.setDevMAC(macAddressStr);
-            AppConstants.BELT_DETAILS.setDevSSID(ssidStr);
-            AppConstants.BELT_DETAILS.setDevPasswd(passwordStr);
-            AppConstants.BELT_DETAILS.setDevSize(mBeltSizeStr);
-            AppConstants.BELT_DETAILS.setDevModal(modelStr);
+            AppConstants.ADD_BELT_DETAILS = new AddBeltEntity();
+            AppConstants.ADD_BELT_DETAILS.setDeviceId(serialNumberStr);
+            AppConstants.ADD_BELT_DETAILS.setDevMAC(macAddressStr);
+            AppConstants.ADD_BELT_DETAILS.setDevSSID(ssidStr);
+            AppConstants.ADD_BELT_DETAILS.setDevPasswd(passwordStr);
+            AppConstants.ADD_BELT_DETAILS.setDevSize(mBeltSizeStr);
+            AppConstants.ADD_BELT_DETAILS.setDevModal(modelStr);
 
             ArrayList<AddBeltEntity> addDeviceArrEntityList = new ArrayList<>();
 
@@ -367,7 +367,7 @@ public class AddBelt extends BaseActivity {
     public void onRequestSuccess(Object resObj) {
         super.onRequestSuccess(resObj);
         if (resObj instanceof CommonResponse) {
-            AppConstants.BELT_DEVICE_ID = AppConstants.BELT_DETAILS.getDeviceId();
+            AppConstants.BELT_DEVICE_ID = AppConstants.ADD_BELT_DETAILS.getDeviceId();
             AppConstants.IS_FROM_BELT_LIST_BOOL = false;
             nextScreen(BeltDetails.class);
         }

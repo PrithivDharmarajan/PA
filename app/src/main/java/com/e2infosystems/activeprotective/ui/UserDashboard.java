@@ -80,7 +80,7 @@ public class UserDashboard extends BaseActivity {
 
         setHeaderAdjustmentView();
         setFooterView();
-        mWebURLStr=AppConstants.DASHBOARD_USER_URL;
+        mWebURLStr=AppConstants.DASHBOARD_URL;
         if(askPermissions()){
             webURLLoad();
         }
@@ -170,6 +170,7 @@ public class UserDashboard extends BaseActivity {
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
+            mWebView.setVisibility(View.VISIBLE);
             DialogManager.getInstance().hideProgress();
 
             UserLoginDetailsEntityRes userDetails = PreferenceUtil.getUserDetails(UserDashboard.this);

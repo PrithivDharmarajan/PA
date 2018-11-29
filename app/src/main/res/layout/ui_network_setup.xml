@@ -40,7 +40,6 @@
                     android:layout_marginTop="@dimen/size3"
                     android:background="@drawable/blue_white_bg"
                     android:hint="@string/enter_ssid"
-
                     android:imeOptions="actionNext|flagNoExtractUi"
                     android:inputType="text"
                     android:maxLines="1"

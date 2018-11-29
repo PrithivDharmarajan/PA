@@ -42,6 +42,10 @@ public class AddUserBelt extends BaseActivity {
     @BindView(R.id.header_center_txt)
     TextView mHeaderCenterTxt;
 
+    @BindView(R.id.header_end_txt)
+    TextView mHeaderEndTxt;
+
+
 
     @BindView(R.id.serial_number_edt)
     EditText mSerialNumberEdt;
@@ -76,7 +80,9 @@ public class AddUserBelt extends BaseActivity {
 
         mHeaderStartTxt.setText(getString(R.string.close));
         mHeaderStartTxt.setVisibility(View.VISIBLE);
-        mHeaderCenterTxt.setVisibility(View.GONE);
+        mHeaderCenterTxt.setText(getString(R.string.add_belt));
+        mHeaderEndTxt.setText(getString(R.string.close));
+
 
         setHeaderAdjustmentView();
     }
@@ -134,7 +140,7 @@ public class AddUserBelt extends BaseActivity {
             DialogManager.getInstance().showAlertPopup(this, getString(R.string.plz_enter_serial_number), this);
         } else if (serialNumberStr.length()< 8) {
             mSerialNumberEdt.requestFocus();
-            DialogManager.getInstance().showAlertPopup(this, getString(R.string.serial_contains_eight_char), this);
+            DialogManager.getInstance().showAlertPopup(this, getString(R.string.serial_contains_nine_char), this);
         } else{
 
 
@@ -157,6 +163,9 @@ public class AddUserBelt extends BaseActivity {
                 PreferenceUtil.storeUserDetails(this,userLoginResponse.getData().getItems().get(0));
                 PreferenceUtil.storeBoolPreferenceValue(this, AppConstants.LOGIN_STATUS, true);
                 nextScreen(UserDashboard.class);
+            }else if(!userLoginResponse.getMessage().isEmpty()){
+
+                DialogManager.getInstance().showInfoPopup(this,userLoginResponse.getMessage());
             }
         }
     }

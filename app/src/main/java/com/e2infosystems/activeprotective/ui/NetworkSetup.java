@@ -18,6 +18,7 @@ import com.e2infosystems.activeprotective.main.BaseActivity;
 import com.e2infosystems.activeprotective.output.model.AdminLoginResponse;
 import com.e2infosystems.activeprotective.output.model.AllUserListResponse;
 import com.e2infosystems.activeprotective.output.model.CommonResponse;
+import com.e2infosystems.activeprotective.output.model.NetworkWifiResponse;
 import com.e2infosystems.activeprotective.services.APIRequestHandler;
 import com.e2infosystems.activeprotective.utils.AppConstants;
 import com.e2infosystems.activeprotective.utils.DialogManager;
@@ -76,6 +77,13 @@ public class NetworkSetup extends BaseActivity {
                 return true;
             }
         });
+
+        /*Set stored network details*/
+        NetworkWifiResponse networkWifiResponse=PreferenceUtil.getNetworkSetupDetails(this);
+        mSSIDEdt.setText(networkWifiResponse.getSSID());
+        mSSIDEdt.setSelection(networkWifiResponse.getSSID().length());
+        mPasswordEdt.setText(networkWifiResponse.getPassword());
+        mPasswordEdt.setSelection(networkWifiResponse.getPassword().length());
 
 
         setHeaderAdjustmentView();
@@ -150,6 +158,10 @@ public class NetworkSetup extends BaseActivity {
             updateWifiStatusEntity.setWiFiConfiguredStatus(1);
              APIRequestHandler.getInstance().updateWifiStatusAPICall(updateWifiStatusEntity,this);
         }else  if (resObj instanceof CommonResponse) {
+            NetworkWifiResponse networkWifiResponse=new NetworkWifiResponse();
+            networkWifiResponse.setSSID(mSSIDEdt.getText().toString().trim());
+            networkWifiResponse.setPassword(mPasswordEdt.getText().toString().trim());
+            PreferenceUtil.storeNetworkSetupDetails(this,networkWifiResponse);
             CommonResponse updateWifiStatusRes = (CommonResponse) resObj;
             DialogManager.getInstance().showInfoPopup(this,updateWifiStatusRes.getMessage());
             final Handler handler = new Handler();

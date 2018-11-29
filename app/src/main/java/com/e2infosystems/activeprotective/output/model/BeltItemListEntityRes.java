@@ -33,6 +33,7 @@ public class BeltItemListEntityRes implements Serializable {
     private String userId = "0";
     private String userName="";
 
+
     public String getUserName() {
         return userName;
     }

@@ -2,6 +2,7 @@ package com.e2infosystems.activeprotective.utils;
 
 
 import com.e2infosystems.activeprotective.input.model.AddBeltEntity;
+import com.e2infosystems.activeprotective.output.model.BeltItemListEntityRes;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,7 @@ public class AppConstants {
     public static String USER_NAME = "USER_NAME";
     public static String AUTHORIZATION_TOKEN = "AUTHORIZATION_TOKEN";
     public static String COMMUNITY_ID = "COMMUNITY_ID";
+    public static String NETWORK_DETAILS = "NETWORK_DETAILS";
 
     /*Previous Screen*/
     public static ArrayList<String> PREVIOUS_SCREEN = new ArrayList<>();
@@ -32,17 +34,19 @@ public class AppConstants {
     public static final String BASE_URL = "https://18.222.253.58:3009/api/";
     //    public static final String BASE_URL = "https://13.58.210.186:3009/api/";
     public static final String DEVICE_BELT_SETTINGS_URL = "https://18.222.253.58:3009/#!/deviceBeltSetting";
-    public static final String DASHBOARD_ADMIN_URL = "https://52.15.158.101:3009/dashboard";
+    public static final String DASHBOARD_URL = "https://13.58.210.186:3009/#!/appDashboard";
     public static final String DEVICE_BELT_ALERT_URL = "https://18.222.253.58:3009/#!/deviceAlertSetting";
     public static final String NETWORK_SETUP_URL = "http://192.168.10.1:2018/wiced_ota_server/ssid_chunk.html?";
-    public static final String DASHBOARD_USER_URL = "https://13.58.210.186:3009/#!/appDashboard";
 
 
     /*Temp*/
     public static String TEMP_SCREEN = "TEMP_SCREEN";
 
     /*Store*/
-    public static AddBeltEntity BELT_DETAILS = new AddBeltEntity();
+    public static AddBeltEntity ADD_BELT_DETAILS = new AddBeltEntity();
+    public static BeltItemListEntityRes BELT_DETAILS = new BeltItemListEntityRes();
+
+
     public static String BELT_DEVICE_ID = "";
     public static boolean IS_FROM_BELT_LIST_BOOL = false;
     public static boolean IS_FROM_BELT_SETTINGS_BOOL = false;

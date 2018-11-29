@@ -21,6 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.e2infosystems.activeprotective.R;
+import com.e2infosystems.activeprotective.input.model.AddBeltEntity;
 import com.e2infosystems.activeprotective.input.model.FetchDeviceEntity;
 import com.e2infosystems.activeprotective.main.BaseActivity;
 import com.e2infosystems.activeprotective.output.model.UserLoginResponse;
@@ -37,6 +38,7 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -215,22 +217,37 @@ public class UserQRBarcodeScanner extends BaseActivity {
                             {
                                 String scannedFullDataStrArr[] = (barcode.valueAt(0).displayValue).split("!");
 
-                                if (scannedFullDataStrArr[0] != null && !mIsScannedBool) {
-                                    String scannedDataStrArr[] = scannedFullDataStrArr[0].split(";");
+                                ArrayList<String> scannedFullDataArrList = new ArrayList<>(Arrays.asList(scannedFullDataStrArr));
+                                boolean isValidDataBool=true;
+                                for (int i=0;i<scannedFullDataArrList.size();i++){
+                                    if ( !mIsScannedBool) {
+                                        String scannedFirstDataStrArr[] = scannedFullDataArrList.get(0).split(";");
 
-                                    if (scannedDataStrArr.length == 1 && !scannedDataStrArr[0].isEmpty() && scannedDataStrArr[0].length() == 7 && !mIsScannedBool) {
-                                        mIsScannedBool = true;
-                                        mDeviceIDStr=scannedDataStrArr[0];
-                                        addDeviceAPICall();
-                                    } else if (!mIsScannedBool) {
-                                        QRErrorColor();
+                                        if (scannedFirstDataStrArr.length != 1 || scannedFirstDataStrArr[0].trim().isEmpty() || scannedFirstDataStrArr[0].length() < 9 ) {
+                                            isValidDataBool=false;
+                                            break;
+                                        }
+
+                                        if((i+1)<scannedFullDataArrList.size()){
+                                            String scannedSecondDataStrArr[] = scannedFullDataArrList.get(i+1).split(";");
+                                            if (scannedSecondDataStrArr.length !=scannedFirstDataStrArr.length  || !scannedSecondDataStrArr[0].trim().equals(scannedFirstDataStrArr[0].trim())) {
+                                                isValidDataBool=false;
+                                                break;
+                                            }
+                                        }
                                     }
+                                }
+
+                                if (isValidDataBool && !mIsScannedBool) {
+                                    String scannedDataStrArr[] = scannedFullDataStrArr[0].split(";");
+                                    mIsScannedBool = true;
+                                    mDeviceIDStr=scannedDataStrArr[0];
+                                    addDeviceAPICall();
                                 } else if (!mIsScannedBool) {
                                     QRErrorColor();
                                 }
 
                             }
-
 
                         }
                     });

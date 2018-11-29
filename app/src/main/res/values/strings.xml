@@ -28,7 +28,7 @@
     <string name="done">Done</string>
     <string name="no_belt_added">no belt added, scan to add belt</string>
     <string name="scan_qr_code_start">Scan QR Code to Start</string>
-    <string name="belt_user_list">BeltList/UserList </string>
+    <string name="belt_user_list">Belt/User List </string>
     <string name="status">Status</string>
     <string name="wifi_configured">Wifi Configured</string>
     <string name="not_configured">Not Configured</string>
@@ -73,7 +73,7 @@
     <string name="save">Save</string>
 
     <string name="plz_enter_serial_number">Please Enter Serial Number</string>
-    <string name="serial_contains_eight_char">Serial Numbe must have at least Eight Characters</string>
+    <string name="serial_contains_nine_char">Serial Numbe must have at least nine Characters</string>
     <string name="plz_enter_mac_address">Please Enter MAC Address</string>
     <string name="plz_enter_ssid">Please Enter SSID</string>
     <string name="plz_enter_model">Please Enter Model</string>

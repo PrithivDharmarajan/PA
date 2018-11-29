@@ -22,6 +22,7 @@
         <ScrollView
             android:id="@+id/no_belt_lay"
             style="@style/LayoutWidMatch_HeiWrap"
+            android:visibility="gone"
             android:layout_centerVertical="true">
 
             <LinearLayout

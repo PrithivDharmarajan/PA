@@ -71,7 +71,7 @@ public class AdminDashboard extends BaseActivity {
 
         setHeaderAdjustmentView();
 
-        mWebURLStr=AppConstants.DASHBOARD_ADMIN_URL;
+        mWebURLStr=AppConstants.DASHBOARD_URL;
         if(askPermissions()){
             webURLLoad();
         }
@@ -141,26 +141,28 @@ public class AdminDashboard extends BaseActivity {
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
+            mWebView.setVisibility(View.VISIBLE);
             DialogManager.getInstance().hideProgress();
 
-            AdminLoginResponse userDetails = PreferenceUtil.getAdminDetails(AdminDashboard.this);
-            String firstKeyNameStr = "userToken";
-            String firstKeyValStr = userDetails.getAccessToken();
+            String firstKeyNameStr = "accountId";
+            String firstKeyValStr = AppConstants.BELT_DETAILS.getAccountId();
 
-            String secondKeyNameStr = "accountId";
-            String secondKeyValStr = userDetails.getAccountId();
+            String secondKeyNameStr = "communityId";
+            String secondKeyValStr = AppConstants.BELT_DETAILS.getCommunityId();
 
-            String thirdKeyNameStr = "userName";
-            String thirdKeyValStr = userDetails.getUserName();
+            String thirdKeyNameStr = "communityName";
+            String thirdKeyValStr = AppConstants.BELT_DETAILS.getCommunityName();
 
-            String fourthKeyNameStr = "deviceId";
-            String fourthKeyValStr = AppConstants.BELT_DEVICE_ID;
+            String fourthKeyNameStr = "userId";
+            String fourthKeyValStr = AppConstants.BELT_DETAILS.getUserId();
 
-            String fifthKeyNameStr = "communityName";
-            String fifthKeyValStr = userDetails.getCommunityName();
+            String fifthKeyNameStr = "FullName";
+            String fifthKeyValStr =AppConstants.BELT_DETAILS.getUserName();
 
-            String sixthKeyNameStr = "communityId";
-            String sixthKeyValStr = userDetails.getCommunityId();
+            String sixthKeyNameStr = "deviceId";
+            String sixthKeyValStr = AppConstants.BELT_DETAILS.getDeviceId();
+
+
 
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
                 mWebView.evaluateJavascript("localStorage.setItem('" + firstKeyNameStr + "','" + firstKeyValStr + "');" +

@@ -184,6 +184,7 @@ public class BeltDetails extends BaseActivity {
 
     private void setData(BeltItemListEntityRes beltDetailsEntity) {
 
+        AppConstants.BELT_DETAILS=beltDetailsEntity;
 
         mSerialNumberEdt.setText(beltDetailsEntity.getDeviceId());
 //        mSerialNumberEdt.setSelected(beltDetailsEntity.getDeviceId().isEmpty());
@@ -358,13 +359,6 @@ public class BeltDetails extends BaseActivity {
             mModelEdt.requestFocus();
             DialogManager.getInstance().showAlertPopup(this, getString(R.string.plz_enter_model), this);
         } else {
-            AppConstants.BELT_DETAILS = new AddBeltEntity();
-            AppConstants.BELT_DETAILS.setDeviceId(serialNumberStr);
-            AppConstants.BELT_DETAILS.setDevMAC(macAddressStr);
-            AppConstants.BELT_DETAILS.setDevSSID(ssidStr);
-            AppConstants.BELT_DETAILS.setDevPasswd(passwordStr);
-            AppConstants.BELT_DETAILS.setDevSize(sizeStr);
-            AppConstants.BELT_DETAILS.setDevModal(modelStr);
 
             sysOut("setDeviceId---"+serialNumberStr);
 

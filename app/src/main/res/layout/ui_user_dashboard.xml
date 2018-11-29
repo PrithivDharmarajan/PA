@@ -13,21 +13,17 @@
 
     </RelativeLayout>
 
-    <ScrollView
-        style="@style/LayoutWidMatch_HeiWrap"
+    <LinearLayout
         android:layout_above="@+id/footer_lay"
         android:layout_below="@+id/header_lay"
-        android:scrollbars="none">
+        style="@style/LayoutMatch" >
 
-        <LinearLayout
-            style="@style/LayoutMatch" >
-
-            <WebView
-                android:id="@+id/web_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </ScrollView>
+        <WebView
+            android:id="@+id/web_view"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/footer_lay"
         android:orientation="vertical"

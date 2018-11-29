@@ -34,6 +34,8 @@ public class UserLogin extends BaseActivity {
         setupUI(mUserLoginViewGroup);
 
         setHeaderAdjustmentView();
+
+
     }
 
     /*Set header view*/

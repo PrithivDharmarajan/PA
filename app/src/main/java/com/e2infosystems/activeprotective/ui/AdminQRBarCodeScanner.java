@@ -38,6 +38,7 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -145,7 +146,7 @@ public class AdminQRBarCodeScanner extends BaseActivity {
                 onBackPressed();
                 break;
             case R.id.add_manually_btn:
-                AppConstants.BELT_DETAILS = new AddBeltEntity();
+                AppConstants.ADD_BELT_DETAILS = new AddBeltEntity();
                 nextScreen(AddBelt.class);
                 break;
 
@@ -206,24 +207,42 @@ public class AdminQRBarCodeScanner extends BaseActivity {
                         public void run() {
                             String scannedFullDataStrArr[] = (barcode.valueAt(0).displayValue).split("!");
 
-                            if (scannedFullDataStrArr[0] != null && !mIsScannedBool) {
-                                String scannedDataStrArr[] = scannedFullDataStrArr[0].split(";");
+                            ArrayList<String> scannedFullDataArrList = new ArrayList<>(Arrays.asList(scannedFullDataStrArr));
+                            boolean isValidDataBool=true;
+                            for (int i=0;i<scannedFullDataArrList.size();i++){
+                                if ( !mIsScannedBool) {
+                                    String scannedFirstDataStrArr[] = scannedFullDataArrList.get(0).split(";");
 
-                                if (scannedDataStrArr.length == 6 && !scannedDataStrArr[0].isEmpty() && scannedDataStrArr[0].length() == 7 && !scannedDataStrArr[1].isEmpty()
-                                        && !scannedDataStrArr[2].isEmpty() && !scannedDataStrArr[3].isEmpty()
-                                        && !scannedDataStrArr[4].isEmpty() && !scannedDataStrArr[5].isEmpty() && !mIsScannedBool) {
-                                    mIsScannedBool = true;
-                                    AppConstants.BELT_DETAILS = new AddBeltEntity();
-                                    AppConstants.BELT_DETAILS.setDeviceId(scannedDataStrArr[0] != null ? scannedDataStrArr[0] : "");
-                                    AppConstants.BELT_DETAILS.setDevMAC(scannedDataStrArr[1] != null ? scannedDataStrArr[1] : "");
-                                    AppConstants.BELT_DETAILS.setDevSSID(scannedDataStrArr[2] != null ? scannedDataStrArr[2] : "");
-                                    AppConstants.BELT_DETAILS.setDevPasswd(scannedDataStrArr[3] != null ? scannedDataStrArr[3] : "");
-                                    AppConstants.BELT_DETAILS.setDevSize(scannedDataStrArr[4] != null ? scannedDataStrArr[4] : "");
-                                    AppConstants.BELT_DETAILS.setDevModal(scannedDataStrArr[5] != null ? scannedDataStrArr[5] : "");
-                                    addDeviceAPICall();
-                                } else if (!mIsScannedBool) {
-                                    QRErrorColor();
+                                    if (scannedFirstDataStrArr.length != 6 || scannedFirstDataStrArr[0].trim().isEmpty() || scannedFirstDataStrArr[0].length() < 9 || scannedFirstDataStrArr[1].trim().isEmpty()
+                                            ||  scannedFirstDataStrArr[2].trim().isEmpty() ||  scannedFirstDataStrArr[3].trim().isEmpty()
+                                            ||  scannedFirstDataStrArr[4].trim().isEmpty() || scannedFirstDataStrArr[5].trim().isEmpty()) {
+                                        isValidDataBool=false;
+                                        break;
+                                    }
+
+                                    if((i+1)<scannedFullDataArrList.size()){
+                                        String scannedSecondDataStrArr[] = scannedFullDataArrList.get(i+1).split(";");
+                                        if (scannedSecondDataStrArr.length !=scannedFirstDataStrArr.length  || !scannedSecondDataStrArr[0].trim().equals(scannedFirstDataStrArr[0].trim())  || !scannedSecondDataStrArr[1].trim().equals(scannedFirstDataStrArr[1].trim())
+                                                ||  !scannedSecondDataStrArr[2].trim().equals(scannedFirstDataStrArr[2].trim()) ||  !scannedSecondDataStrArr[3].trim().equals(scannedFirstDataStrArr[3].trim())
+                                                ||  !scannedSecondDataStrArr[4].trim().equals(scannedFirstDataStrArr[4].trim()) || !scannedSecondDataStrArr[5].equals(scannedFirstDataStrArr[5].trim())) {
+                                            isValidDataBool=false;
+                                            break;
+                                        }
+                                    }
                                 }
+                            }
+
+                            if (isValidDataBool && !mIsScannedBool) {
+                                String scannedDataStrArr[] = scannedFullDataStrArr[0].split(";");
+                                     mIsScannedBool = true;
+                                    AppConstants.ADD_BELT_DETAILS = new AddBeltEntity();
+                                    AppConstants.ADD_BELT_DETAILS.setDeviceId(scannedDataStrArr[0] != null ? scannedDataStrArr[0] : "");
+                                    AppConstants.ADD_BELT_DETAILS.setDevMAC(scannedDataStrArr[1] != null ? scannedDataStrArr[1] : "");
+                                    AppConstants.ADD_BELT_DETAILS.setDevSSID(scannedDataStrArr[2] != null ? scannedDataStrArr[2] : "");
+                                    AppConstants.ADD_BELT_DETAILS.setDevPasswd(scannedDataStrArr[3] != null ? scannedDataStrArr[3] : "");
+                                    AppConstants.ADD_BELT_DETAILS.setDevSize(scannedDataStrArr[4] != null ? scannedDataStrArr[4] : "");
+                                    AppConstants.ADD_BELT_DETAILS.setDevModal(scannedDataStrArr[5] != null ? scannedDataStrArr[5] : "");
+                                    addDeviceAPICall();
                             } else if (!mIsScannedBool) {
                                 QRErrorColor();
                             }
@@ -284,12 +303,12 @@ public class AdminQRBarCodeScanner extends BaseActivity {
                 addDeviceArrFirstEntity.setCommunityId(userDetailsEntityRes.getCommunityId());
                 addDeviceArrFirstEntity.setCommunityName(userDetailsEntityRes.getCommunityName());
                 addDeviceArrFirstEntity.setAccountId(userDetailsEntityRes.getAccountId());
-                addDeviceArrFirstEntity.setDevMAC(AppConstants.BELT_DETAILS.getDevMAC());
-                addDeviceArrFirstEntity.setDevModal(AppConstants.BELT_DETAILS.getDevModal());
-                addDeviceArrFirstEntity.setDevPasswd(AppConstants.BELT_DETAILS.getDevPasswd());
-                addDeviceArrFirstEntity.setDevSSID(AppConstants.BELT_DETAILS.getDevSSID());
-                addDeviceArrFirstEntity.setDevSize(AppConstants.BELT_DETAILS.getDevSize());
-                addDeviceArrFirstEntity.setDeviceId(AppConstants.BELT_DETAILS.getDeviceId());
+                addDeviceArrFirstEntity.setDevMAC(AppConstants.ADD_BELT_DETAILS.getDevMAC());
+                addDeviceArrFirstEntity.setDevModal(AppConstants.ADD_BELT_DETAILS.getDevModal());
+                addDeviceArrFirstEntity.setDevPasswd(AppConstants.ADD_BELT_DETAILS.getDevPasswd());
+                addDeviceArrFirstEntity.setDevSSID(AppConstants.ADD_BELT_DETAILS.getDevSSID());
+                addDeviceArrFirstEntity.setDevSize(AppConstants.ADD_BELT_DETAILS.getDevSize());
+                addDeviceArrFirstEntity.setDeviceId(AppConstants.ADD_BELT_DETAILS.getDeviceId());
                 addDeviceArrFirstEntity.setLedIntensity(4);
                 addDeviceArrFirstEntity.setSystemAlert(1);
                 addDeviceArrFirstEntity.setUnBuckleAlert(0);
@@ -368,7 +387,7 @@ public class AdminQRBarCodeScanner extends BaseActivity {
     public void onRequestSuccess(Object resObj) {
         super.onRequestSuccess(resObj);
         if (resObj instanceof CommonResponse) {
-            AppConstants.BELT_DEVICE_ID = AppConstants.BELT_DETAILS.getDeviceId();
+            AppConstants.BELT_DEVICE_ID = AppConstants.ADD_BELT_DETAILS.getDeviceId();
             AppConstants.IS_FROM_BELT_LIST_BOOL = false;
             nextScreen(BeltDetails.class);
         }

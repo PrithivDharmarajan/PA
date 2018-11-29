@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.e2infosystems.activeprotective.output.model.AdminLoginResponse;
+import com.e2infosystems.activeprotective.output.model.NetworkWifiResponse;
 import com.e2infosystems.activeprotective.output.model.UserLoginDetailsEntityRes;
 import com.google.gson.Gson;
 
@@ -106,6 +107,9 @@ public class PreferenceUtil {
         /*Store community id*/
         storeStringPreferenceValue(context, AppConstants.COMMUNITY_ID, userDetailsEntity.getCommunityId());
 
+        /*Store networkSetup*/
+        storeNetworkSetupDetails(context,new NetworkWifiResponse());
+
         /*Store user details*/
         storeValueToPreference(context, PreferenceUtil.STRING_PREFERENCE,
                 AppConstants.USER_DETAILS, userDetailStr);
@@ -119,6 +123,9 @@ public class PreferenceUtil {
 
         Gson gson = new Gson();
         userDetailStr = gson.toJson(userDetailsEntity);
+
+        /*Store networkSetup*/
+        storeNetworkSetupDetails(context,new NetworkWifiResponse());
 
         /*Store user details*/
         storeValueToPreference(context, PreferenceUtil.STRING_PREFERENCE,
@@ -152,6 +159,32 @@ public class PreferenceUtil {
 
         return userDetailsEntityRes;
     }
+
+    /*Store network setup details to preference*/
+    public static void storeNetworkSetupDetails(Context context, NetworkWifiResponse networkWifiResponse) {
+        String networkSetupStr = "";
+        Gson gson = new Gson();
+        networkSetupStr = gson.toJson(networkWifiResponse);
+
+        /*Store network setup  details*/
+        storeValueToPreference(context, PreferenceUtil.STRING_PREFERENCE,
+                AppConstants.NETWORK_DETAILS, networkSetupStr);
+
+    }
+
+    /*Get network setup details from preference*/
+    public static NetworkWifiResponse getNetworkSetupDetails(Context context) {
+        NetworkWifiResponse userDetailsEntityRes = new NetworkWifiResponse();
+
+        String userDetailsStr = getStringPreferenceValue(context, AppConstants.NETWORK_DETAILS);
+
+        if (userDetailsStr != null && !userDetailsStr.isEmpty()) {
+            userDetailsEntityRes = new Gson().fromJson(userDetailsStr, NetworkWifiResponse.class);
+        }
+
+        return userDetailsEntityRes;
+    }
+
 
     /*Get authorization token from preference*/
     public static String getAuthorizationToken(Context context) {
